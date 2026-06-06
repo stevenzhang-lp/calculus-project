@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document Title — Project Name</title>
+
+    <!-- 1. Typography: Serif for headings/accents, Sans-Serif for body prose -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,340..560;1,9..144,340..480&family=Hanken+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
+
+    <!-- 2. KaTeX LaTeX Rendering Engine Configuration -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css">
+    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.js"></script>
+    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/contrib/auto-render.min.js"></script>
+
+    <!-- 3. Decoupled and Componentized Architecture Styles -->
+    <style>
+        :root {
+            /* Academic/Paper Color Palette Scheme */
+            --paper: #F4EEE3;        /* Main global background */
+            --paper-2: #EDE3D2;      /* Secondary background */
+            --card: #F8F3EA;         /* Card background components */
+            --ink: #221C15;          /* Dominant text color (Deep Ink) */
+            --ink-soft: #6B6151;     /* Subdued body text color */
+            --ink-faint: #9A8E79;    /* Muted label/meta text */
+            --accent: #B0502C;       /* Terracotta/Amber primary branding color */
+            --accent-2: #3E6B6E;     /* Teal/Slate secondary semantic accent */
+            --ghost: #C9BCA4;        /* Placeholder colors */
+            --line: #DDD1BC;         /* Distinct solid borders */
+            --line-soft: #E7DECE;    /* Subtle soft section split lines */
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; }
+        
+        body {
+            background: var(--paper); color: var(--ink);
+            font-family: "Hanken Grotesk", sans-serif; font-size: 17.5px; line-height: 1.72;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* Ambient grain-noise paper overlay texture */
+        body::before {
+            content: ""; position: fixed; inset: 0; pointer-events: none; z-index: 9999;
+            opacity: .045; mix-blend-mode: multiply;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+        }
+
+        a { color: var(--accent); text-decoration: none; }
+
+        /* ---------- Sticky Top Navigation (Quarto-style) ---------- */
+        .navbar {
+            position: sticky; top: 0; z-index: 100;
+            background: rgba(244, 238, 227, .86); backdrop-filter: saturate(140%) blur(8px);
+            border-bottom: 1px solid var(--line);
+        }
+        .navbar .inner { max-width: 1280px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; padding: 14px 30px; }
+        .navbar .brand { font-family: "Fraunces"; font-weight: 520; font-size: 19px; color: var(--ink); }
+        .navbar .nav-links { display: flex; gap: 26px; font-size: 14.5px; color: var(--ink-soft); }
+        .navbar .nav-links a { color: inherit; transition: color .2s; }
+        .navbar .nav-links a:hover, .navbar .nav-links a.active { color: var(--accent); }
+
+        /* ---------- Three-Pane Grid Layout Layout Grid ---------- */
+        .layout {
+            display: grid; grid-template-columns: 236px minmax(0, 720px) 212px;
+            gap: 0; max-width: 1280px; margin: 0 auto; align-items: start;
+        }
+
+        /* Left Split Panel: Categorized Core Topic Level Nav Links */
+        .sidenav { position: sticky; top: 60px; padding: 46px 24px 40px 30px; font-size: 14.5px; }
+        .sidenav .grp { font-size: 12px; text-transform: uppercase; letter-spacing: .16em; color: var(--ink-faint); margin: 0 0 14px; }
+        .sidenav ul { list-style: none; }
+        .sidenav li { margin: 2px 0; }
+        .sidenav a { display: block; padding: 5px 12px; border-radius: 4px; color: var(--ink-soft); transition: .2s; }
+        .sidenav a:hover { background: var(--line-soft); color: var(--ink); }
+        .sidenav a.active { color: var(--accent); background: var(--line-soft); font-weight: 600; box-shadow: inset 2px 0 0 var(--accent); }
+
+        /* Right Split Panel: Document Outline Subheadings / Table of Contents (TOC) */
+        .toc { position: sticky; top: 60px; padding: 48px 26px 40px 12px; font-size: 13px; }
+        .toc .lbl { font-size: 11px; text-transform: uppercase; letter-spacing: .16em; color: var(--ink-faint); margin-bottom: 14px; }
+        .toc ul { list-style: none; }
+        .toc a { display: block; padding: 4px 0 4px 12px; color: var(--ink-faint); border-left: 2px solid var(--line-soft); line-height: 1.35; transition: .2s; }
+        .toc a:hover { color: var(--ink-soft); }
+        .toc a.active { color: var(--accent); border-left-color: var(--accent); }
+
+        /* Middle Split Center: Core Main Semantic Document Engine Content Area */
+        .content { padding: 46px 0 90px; min-width: 0; }
+        .eyebrow { font-size: 12.5px; text-transform: uppercase; letter-spacing: .2em; color: var(--accent); font-weight: 600; margin-bottom: 20px; }
+        h1.title { font-family: "Fraunces"; font-weight: 360; font-size: clamp(36px, 5.4vw, 58px); line-height: 1.04; letter-spacing: -.015em; margin-bottom: 18px; }
+        .subtitle { font-size: 20px; color: var(--ink-soft); max-width: 560px; line-height: 1.5; margin-bottom: 30px; }
+        h2 { font-family: "Fraunces"; font-weight: 400; font-size: clamp(25px, 3.3vw, 34px); line-height: 1.12; letter-spacing: -.01em; margin: 54px 0 18px; scroll-margin-top: 72px; }
+        .content p { margin: 0 0 19px; }
+        .katex { font-size: 1.03em; }
+
+        /* ---------- Component Utilities Class Group UI ---------- */
+        /* 1. Alert Information Meta Field Card Container (Callout Block) */
+        .callout {
+            display: flex; gap: 14px; background: var(--card); border: 1px solid var(--line);
+            border-left: 4px solid var(--accent-2); border-radius: 5px; padding: 16px 18px; margin: 26px 0; font-size: 15px;
+        }
+        .callout .ic { flex: 0 0 auto; color: var(--accent-2); font-family: "Fraunces"; font-style: italic; font-weight: 500; }
+        .callout .body { color: var(--ink-soft); }
+        .callout .body b { color: var(--ink); }
+
+        /* 2. Portrait Asset Visual Media Framework Flex Container (Figure Frame) */
+        figure { margin: 32px auto; text-align: center; }
+        .portraits { display: flex; gap: 18px; justify-content: center; flex-wrap: wrap; }
+        .portrait { width: 150px; }
+        .portrait img { width: 150px; height: 178px; border-radius: 5px; object-fit: cover; background: var(--paper-2); border: 1px solid var(--line); display: block; }
+        figcaption { font-style: italic; font-family: "Fraunces"; font-weight: 340; font-size: 14px; color: var(--ink-soft); margin-top: 14px; line-height: 1.45; max-width: 560px; margin-left: auto; margin-right: auto; }
+        .pname { font-style: normal; font-weight: 500; color: var(--ink); font-size: 14px; margin-top: 8px; display: block; }
+
+        /* 3. Hero Stylistic Block Quote Highlight Layer (Pull Quote Block) */
+        blockquote.pull { margin: 46px 0; padding: 0 0 0 24px; border-left: 3px solid var(--accent); }
+        blockquote.pull p { font-family: "Fraunces"; font-style: italic; font-weight: 340; font-size: clamp(21px, 2.8vw, 27px); line-height: 1.3; color: var(--ink); margin: 0; }
+        blockquote.pull cite { display: block; margin-top: 14px; font-style: normal; font-size: 13.5px; color: var(--ink-soft); letter-spacing: .02em; }
+
+        /* 4. Canvas Playground Sandbox Widget Card Wrapper (Interactive Box) */
+        .figbox { background: var(--card); border: 1px solid var(--line); border-radius: 7px; padding: 24px 22px 20px; margin: 32px 0; }
+        .figbox .cap { font-size: 12px; text-transform: uppercase; letter-spacing: .14em; color: var(--ink-faint); margin-bottom: 16px; }
+
+        /* ---------- Global Document Bottom Layer Footer ---------- */
+        footer { border-top: 1px solid var(--line); padding: 34px 30px 60px; text-align: center; color: var(--ink-faint); font-size: 13px; }
+
+        /* ---------- Scroll Animation Interface Engines (Transition Engine) ---------- */
+        .rv { opacity: 0; transform: translateY(20px); transition: opacity .85s cubic-bezier(.2,.7,.2,1), transform .85s cubic-bezier(.2,.7,.2,1); }
+        .rv.in { opacity: 1; transform: none; }
+        @keyframes rise { from { opacity: 0; transform: translateY(22px); } to { opacity: 1; transform: none; } }
+        .content .eyebrow, h1.title, .subtitle, .callout.intro { opacity: 0; animation: rise .9s cubic-bezier(.2,.7,.2,1) forwards; }
+        h1.title { animation-delay: .1s; }
+        .subtitle { animation-delay: .22s; }
+        .callout.intro { animation-delay: .34s; }
+
+        /* ---------- Mobile Layout Breakpoint Target Configuration ---------- */
+        @media(max-width: 1040px) {
+            .layout { grid-template-columns: 1fr; max-width: 720px; }
+            .sidenav, .toc { display: none; } /* Automatically falls into a single column profile flow */
+            .content { padding: 34px 28px 80px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header Navigation Bar Component -->
+    <div class="navbar">
+        <div class="inner">
+            <div class="brand">Calculus Story</div>
+            <div class="nav-links">
+                <a href="#">Home</a>
+                <a href="#" class="active">Topics</a>
+                <a href="#">About</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Core Layout Grid Structure -->
+    <div class="layout">
+
+        <!-- Left Column Pane: External Links Group List Navigation Menu -->
+        <aside class="sidenav">
+            <p class="grp">Category Title</p>
+            <ul>
+                <li><a href="#" class="active">Sub-item Topic 1</a></li>
+                <li><a href="#">Sub-item Topic 2</a></li>
+                <li><a href="#">Sub-item Topic 3</a></li>
+            </ul>
+        </aside>
+
+        <!-- Middle Column Pane: Article Main Text Interface Target Content -->
+        <main class="content">
+            <p class="eyebrow">Category · Subtitle Heading</p>
+            <h1 class="title">Main Editorial Headline Document Title Goes Here</h1>
+            <p class="subtitle">Placeholder sub-headline description text frame providing brief summary definitions regarding layout parameters.</p>
+
+            <!-- Metadata Box / Announcement Alert Card (Callout Area) -->
+            <div class="callout intro">
+                <span class="ic">Notice</span>
+                <span class="body"><b>Meta Label Information Header</b><br><b>Field Key 1:</b> Value Parameter 1<br><b>Field Key 2:</b> Value Parameter 2</span>
+            </div>
+
+            <!-- Chapter Session 1 -->
+            <h2 id="section-1">1. Primary Header Element Blueprint</h2>
+            <p>Body copy paragraph framework placeholder text. Inline math formulas can be styled using <code>\( ... \)</code> markers, such as: \( \alpha + \beta = \gamma \), rendering within natural string layouts.</p>
+            
+            <p>Standalone large block formulas centered on their own line are structured using standard double-dollar delimiter flags <code>$$ ... $$</code>:</p>
+            <p style="text-align:center">$$ \oint_C \mathbf{B} \cdot d\mathbf{\ell} = \mu_0 I_{\text{enc}} $$</p>
+
+            <!-- Figure Media Resource Frame Component Layout -->
+            <figure>
+                <div class="portraits">
+                    <div class="portrait">
+                        <img alt="Visual Asset Placeholder Image" src="https://via.placeholder.com/150x178/EDE3D2/221C15?text=Asset+Frame">
+                        <span class="pname">Asset Label Name</span>
+                    </div>
+                </div>
+                <figcaption>Figure 1.1: Captions text block framework detailing data interpretations, metrics, annotations, or attribution metadata details.</figcaption>
+            </figure>
+
+            <!-- Chapter Session 2 -->
+            <h2 id="section-2">2. Secondary Header Element Blueprint</h2>
+            <p>As you move through different text hierarchies, scroll monitoring scripts listen to document view coordinates to dynamically toggle active links within the sidebar structure.</p>
+            
+            <blockquote class="pull">
+                <p>“This represents an alternative styled pull-quote highlight container designed for key text extraction callouts.”</p>
+                <cite>— Citation Source Signature</cite>
+            </blockquote>
+
+            <!-- Custom Sandbox Interface Element Component Box Area Wrapper -->
+            <div class="figbox">
+                <div class="cap">Interactive Module · Canvas Interface Wrapper</div>
+                <div style="text-align:center; padding:20px; color:var(--ink-soft); font-style:italic;">
+                    Custom execution scripts, simulation controls, input slider groups, or WebGL/Canvas tags can be placed here.
+                </div>
+            </div>
+
+            <h2 id="section-3">3. Tertiary Header Element Blueprint</h2>
+            <p>The entire base system relies purely on raw, standardized native HTML and standard CDN configurations, ensuring efficient file delivery and asset tracking via static server hosting services.</p>
+        </main>
+
+        <!-- Right Column Pane: Active Single Page Document Outline Navigation Tree (TOC) -->
+        <aside class="toc">
+            <p class="lbl">On This Page</p>
+            <ul id="tocList">
+                <!-- Anchor links must exactly map back to the ID configuration strings attached to content section headers -->
+                <li><a href="#section-1">1. Primary Header Element Blueprint</a></li>
+                <li><a href="#section-2">2. Secondary Header Element Blueprint</a></li>
+                <li><a href="#section-3">3. Tertiary Header Element Blueprint</a></li>
+            </ul>
+        </aside>
+
+    </div>
+
+    <!-- Main Global Footer Layer -->
+    <footer>System Dashboard · Technical Prototype Engine Framework · GitHub Pages Deployment Blueprint</footer>
+
+    <!-- 4. Automation Control Automation Script Core Processing Layer -->
+    <script>
+        window.addEventListener("load", () => {
+            // Initialize KaTeX Dynamic Rendering (Configured for Inline & Block delimiters)
+            if (window.renderMathInElement) {
+                renderMathInElement(document.body, {
+                    delimiters: [
+                        { left: "$$", right: "$$", display: true },
+                        { left: "\\(", right: "\\)", display: false }
+                    ]
+                });
+            }
+        });
+
+        // Effect Module 1: Intersection Observer for Scroll Reveal Fade-In States
+        const io = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add("in");
+                    io.unobserve(entry.target);
+                }
+            });
+        }, { threshold: .12 });
+        document.querySelectorAll("h2, figure, .figbox, blockquote.pull, .content p").forEach(el => {
+            el.classList.add("rv");
+            io.observe(el);
+        });
+
+        // Effect Module 2: Intersection Observer for Auto-Highlight ScrollSpy Sidebar Tracking
+        const heads = [...document.querySelectorAll("h2[id]")];
+        const tocLinks = [...document.querySelectorAll("#tocList a")];
+        const spy = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const id = entry.target.id;
+                    tocLinks.forEach(a => a.classList.toggle("active", a.getAttribute("href") === "#" + id));
+                }
+            });
+        }, { rootMargin: "-20% 0px -70% 0px" });
+        heads.forEach(h => spy.observe(h));
+    </script>
+</body>
+</html>
