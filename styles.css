@@ -304,6 +304,9 @@ blockquote.pull cite {
     font-size: 0.82rem !important;
     padding: 4px 8px !important;
     color: #888A90 !important;
+    display: inline-block !important;
+    max-width: 240px !important;
+    white-space: normal !important;
 }
 
 #quarto-sidebar .sidebar-section .sidebar-section a:hover,
