@@ -10,9 +10,11 @@ website:
       - text: "Home"
         href: index.qmd
       - section: "Core Topics"
+        collapse: true
         contents:
           - section: "Gaussian integral"
             href: gaussian.qmd
+            collapse: true
             contents:
               - text: "1. Introduction"
                 href: gaussian.qmd#section-1
@@ -26,3 +28,4 @@ format:
     theme: default
     css: styles.css
     toc: false
+    include-after-body: footer.html

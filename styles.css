@@ -212,7 +212,7 @@ blockquote.pull cite {
         margin: 0 !important;
         border-right: 1px solid #2D2E32 !important;
         background-color: var(--bg-sidebar) !important;
-        padding: 1.25rem 1.5rem 2rem 2rem !important;
+        padding: 1.25rem 1.5rem 2rem 2rem !important; /* Brought closer to the absolute top (1.25rem) */
         z-index: 1000;
         overflow-y: auto;
     }
@@ -268,13 +268,14 @@ blockquote.pull cite {
 }
 
 #quarto-sidebar a {
-    padding: 6px 0 !important;
+    padding: 6px 12px !important;
+    border-radius: 6px;
     color: #A0A5B1 !important;
     transition: all 0.2s ease;
 }
 
 #quarto-sidebar a:hover:not(.active) {
-    background-color: transparent !important;
+    background-color: #2D2E32 !important;
     color: #FFFFFF !important;
 }
 
@@ -302,6 +303,24 @@ blockquote.pull cite {
     color: #FFFFFF !important;
 }
 
+/* Clean transparent hover background overrides */
+#quarto-sidebar a {
+    padding: 6px 0 !important;
+    color: #A0A5B1 !important;
+    transition: all 0.2s ease;
+}
+
+#quarto-sidebar a:hover:not(.active) {
+    background-color: transparent !important;
+    color: #FFFFFF !important;
+}
+
+#quarto-sidebar a.active {
+    color: #FFFFFF !important;
+    background-color: transparent !important;
+    font-weight: 600 !important;
+}
+
 /* Hide Quarto page breadcrumbs */
 .quarto-page-breadcrumbs,
 .quarto-title-breadcrumbs,
@@ -309,3 +328,43 @@ blockquote.pull cite {
     display: none !important;
 }
 
+/* Home Page Hero Styling */
+.home-hero {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-height: 40vh;
+    padding: 4rem 0;
+}
+
+.home-title {
+    font-family: "Playfair Display", Georgia, serif;
+    font-size: clamp(40px, 6vw, 60px);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    color: var(--text-primary);
+    margin-bottom: 1rem;
+    animation: fadeInUp 0.8s ease forwards;
+}
+
+.home-subtitle {
+    font-family: "Inter", sans-serif;
+    font-size: 1.2rem;
+    font-weight: 300;
+    color: var(--text-muted);
+    max-width: 600px;
+    line-height: 1.6;
+    animation: fadeInUp 0.8s ease 0.15s forwards;
+    opacity: 0;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(15px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}

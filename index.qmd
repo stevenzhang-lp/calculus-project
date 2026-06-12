@@ -1,7 +1,8 @@
 ---
-title: "Redirecting..."
+title: "Home"
 ---
 
-<meta http-equiv="refresh" content="0; url=gaussian.html">
-
-<p>Redirecting to <a href="gaussian.html">Gaussian integral</a>...</p>
+<div class="home-hero">
+    <h1 class="home-title">We are Algebraic.</h1>
+    <p class="home-subtitle">Exploring the beauty of mathematical structures and historical derivations.</p>
+</div>
