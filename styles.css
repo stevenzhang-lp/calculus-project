@@ -202,17 +202,17 @@ blockquote.pull cite {
 
 /* Desktop 3-Column Layout: Sidebar Left, Content Center, TOC Right */
 @media (min-width: 992px) {
-    /* Left Sidebar: Fixed and Flush-Left */
+    /* Left Sidebar: Fixed and Flush-Left (Width widened to 310px to prevent text wrapping) */
     #quarto-sidebar {
         position: fixed !important;
         left: 0 !important;
         top: 0 !important;
         bottom: 0 !important;
-        width: 260px !important;
+        width: 310px !important;
         margin: 0 !important;
         border-right: 1px solid #2D2E32 !important;
         background-color: var(--bg-sidebar) !important;
-        padding: 1.25rem 1.5rem 2rem 2rem !important; /* Brought closer to the absolute top (1.25rem) */
+        padding: 1.25rem 1.5rem 2rem 2rem !important;
         z-index: 1000;
         overflow-y: auto;
     }
@@ -224,19 +224,19 @@ blockquote.pull cite {
 
     /* Container: occupy full width and center the main content area */
     #quarto-content {
-        padding-left: 260px !important;  /* Space for left sidebar */
+        padding-left: 310px !important;  /* Space for left sidebar (widened to 310px) */
         padding-right: 0 !important;     /* No right TOC space needed */
         width: 100% !important;
         max-width: 100% !important;
         box-sizing: border-box !important;
     }
 
-    /* Main article content centered in the remaining screen space */
+    /* Main article content centered between sidebar and screen edge */
     main.content {
         margin-left: auto !important;
         margin-right: auto !important;
         max-width: 780px !important;
-        padding-top: 4rem !important;
+        padding-top: 5rem !important;
         padding-left: 3rem !important;
         padding-right: 3rem !important;
     }
@@ -302,3 +302,11 @@ blockquote.pull cite {
 #quarto-sidebar .sidebar-section .sidebar-section a:hover {
     color: #FFFFFF !important;
 }
+
+/* Hide Quarto page breadcrumbs */
+.quarto-page-breadcrumbs,
+.quarto-title-breadcrumbs,
+.breadcrumb {
+    display: none !important;
+}
+

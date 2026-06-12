@@ -2,9 +2,6 @@
 title: "The Gaussian Integral"
 subtitle: "An elegant derivation of the classical Euler–Poisson integral using polar coordinates."
 ---
-
-<p class="eyebrow">Calculus · Double Integrals</p>
-
 <!-- Definition Callout -->
 <div class="callout intro">
 <span class="ic">Definition</span>
