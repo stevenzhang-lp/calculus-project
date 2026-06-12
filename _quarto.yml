@@ -21,4 +21,4 @@ format:
     theme: default
     css: styles.css
     toc: true
-    toc-title: "On This Page"
+    toc-title: "Outline"
