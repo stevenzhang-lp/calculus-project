@@ -212,42 +212,33 @@ blockquote.pull cite {
         margin: 0 !important;
         border-right: 1px solid #2D2E32 !important;
         background-color: var(--bg-sidebar) !important;
-        padding: 2rem 1.5rem 2rem 2rem !important; /* Reduced top padding to 2rem to align title to top-left */
+        padding: 1.25rem 1.5rem 2rem 2rem !important; /* Brought closer to the absolute top (1.25rem) */
         z-index: 1000;
         overflow-y: auto;
     }
 
-    /* Right TOC: Fixed and Flush-Right */
+    /* Right TOC: Disabled completely */
     .quarto-margin-sidebar {
-        position: fixed !important;
-        right: 0 !important;
-        top: 0 !important;
-        bottom: 0 !important;
-        width: 240px !important;
-        margin: 0 !important;
-        background-color: var(--bg-primary) !important;
-        padding: 5rem 2rem 2rem 1.5rem !important;
-        z-index: 999;
-        border-left: none !important;
+        display: none !important;
     }
 
     /* Container: occupy full width and center the main content area */
     #quarto-content {
         padding-left: 260px !important;  /* Space for left sidebar */
-        padding-right: 240px !important; /* Space for right TOC */
+        padding-right: 0 !important;     /* No right TOC space needed */
         width: 100% !important;
         max-width: 100% !important;
         box-sizing: border-box !important;
     }
 
-    /* Main article content centered between sidebar and TOC */
+    /* Main article content centered in the remaining screen space */
     main.content {
         margin-left: auto !important;
         margin-right: auto !important;
         max-width: 780px !important;
-        padding-top: 5rem !important;
-        padding-left: 2rem !important;
-        padding-right: 2rem !important;
+        padding-top: 4rem !important;
+        padding-left: 3rem !important;
+        padding-right: 3rem !important;
     }
 }
 
@@ -265,6 +256,7 @@ blockquote.pull cite {
     letter-spacing: -0.01em;
     margin-top: 0 !important;
     margin-bottom: 1.5rem;
+    padding-top: 0 !important;
 }
 
 #quarto-sidebar .sidebar-item-text, 
@@ -293,73 +285,20 @@ blockquote.pull cite {
     font-weight: 600 !important;
 }
 
-/* Sidebar Search Bar Styling (Dark Input) */
-.quarto-search-container input {
-    background-color: #2D2E32 !important;
-    border: 1px solid #3F4045 !important;
-    color: #FFFFFF !important;
-    border-radius: 6px;
+/* Sub-items in sidebar menu (integrated outline) styling */
+#quarto-sidebar .sidebar-section .sidebar-section {
+    margin-left: 0.5rem !important;
+    border-left: 1px solid #2D2E32 !important;
+    padding-left: 0.5rem !important;
+    margin-top: 0.25rem !important;
 }
-.quarto-search-container input::placeholder {
-    color: #6B7280 !important;
-}
-#quarto-search-key {
+
+#quarto-sidebar .sidebar-section .sidebar-section a {
+    font-size: 0.82rem !important;
+    padding: 4px 8px !important;
     color: #888A90 !important;
-    background-color: #3F4045 !important;
 }
 
-/* TOC (Table of Contents) - Right Sidebar Styling */
-#TOC {
-    border-left: 1px solid var(--border) !important;
-    padding-left: 1.25rem;
-    margin-top: 0;
-}
-
-#TOC .toc-title {
-    font-family: "Inter", sans-serif;
-    font-size: 0.75rem;
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-    font-weight: 600;
-    color: var(--text-primary) !important;
-    margin-bottom: 1rem;
-    padding-bottom: 0.25rem;
-    border-bottom: 1px solid var(--border-soft);
-    line-height: 1.4;
-}
-
-#TOC ul {
-    list-style: none;
-    padding-left: 0;
-    margin: 0;
-}
-
-#TOC li {
-    margin-bottom: 0.5rem;
-}
-
-#TOC a {
-    font-family: "Inter", sans-serif;
-    font-size: 0.82rem;
-    line-height: 1.45;
-    color: var(--text-muted) !important;
-    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-    padding: 2px 0;
-    display: inline-block;
-}
-
-#TOC a:hover {
-    color: var(--text-primary) !important;
-    transform: translateX(2px);
-}
-
-#TOC .active {
-    color: var(--text-primary) !important;
-    font-weight: 600;
-    border-left: 2px solid var(--text-primary) !important;
-    margin-left: -1.25rem;
-    padding-left: calc(1.25rem - 2px) !important;
-    border-right: none !important;
-    margin-right: 0;
-    padding-right: 0 !important;
+#quarto-sidebar .sidebar-section .sidebar-section a:hover {
+    color: #FFFFFF !important;
 }
