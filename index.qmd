@@ -5,5 +5,4 @@ title: ""
 :::{.home-hero}
 # We are Algebraic. {.home-title}
 
-Exploring the beauty of mathematical structures and historical derivations. {.home-subtitle}
 :::
