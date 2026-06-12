@@ -2,27 +2,19 @@ project:
   type: website
 
 website:
-  title: "Calculus Story"
+  title: "Gaussian integral"
   navbar:
     left:
-      - href: index.qmd
-        text: Home
-      - href: index.qmd
-        text: Topics
-      - href: index.qmd
-        text: About
+      - href: gaussian-integral.qmd
+        text: "Gaussian integral"
   sidebar:
     style: "docked"
     search: false
     contents:
-      - section: "Category Title"
+      - section: "Topics"
         contents:
-          - text: "Sub-item Topic 1"
-            href: index.qmd
-          - text: "Sub-item Topic 2"
-            href: index.qmd
-          - text: "Sub-item Topic 3"
-            href: index.qmd
+          - text: "Gaussian integral"
+            href: gaussian-integral.qmd
 
 format:
   html:

@@ -1,0 +1,90 @@
+---
+title: "The Gaussian Integral"
+subtitle: "An elegant derivation of the classical Euler–Poisson integral using polar coordinates."
+---
+
+<p class="eyebrow">Calculus · Double Integrals</p>
+
+<!-- Definition Callout -->
+<div class="callout intro">
+    <span class="ic">Definition</span>
+    <span class="body">The Gaussian integral, also known as the Euler–Poisson integral, is the integral of the Gaussian function $f(x) = e^{-x^2}$ over the entire real line:
+    <br><br>
+    $$\int_{-\infty}^{\infty} e^{-x^2} dx = \sqrt{\pi}$$
+    </span>
+</div>
+
+## 1. Introduction {#section-1}
+
+The Gaussian integral is of fundamental importance in mathematics, physics, and statistics. It forms the basis of the normal (Gaussian) distribution in probability theory, appears in the evaluation of partition functions in statistical mechanics, and describes the ground state wave function of the quantum harmonic oscillator.
+
+Despite its simplicity and widespread utility, evaluating the integral presents a unique challenge: the integrand $e^{-x^2}$ does not possess an elementary antiderivative. Consequently, standard techniques like the Fundamental Theorem of Calculus cannot be applied directly. To find its value, we must turn to more sophisticated multi-variable calculus techniques.
+
+## 2. The Polar Coordinates Derivation {#section-2}
+
+The classic proof, attributed to Siméon Denis Poisson, involves evaluating the square of the integral by transforming a two-dimensional double integral from Cartesian to polar coordinates.
+
+Let $I$ denote the value of the Gaussian integral:
+
+$$I = \int_{-\infty}^{\infty} e^{-x^2} dx$$
+
+Since the variable of integration is a dummy variable, we can write the square of this integral as the product of two independent single integrals:
+
+$$I^2 = \left( \int_{-\infty}^{\infty} e^{-x^2} dx \right) \left( \int_{-\infty}^{\infty} e^{-y^2} dy \right)$$
+
+By Fubini's theorem, we can combine these two single integrals into a double integral over the entire two-dimensional Cartesian plane $\mathbb{R}^2$:
+
+$$I^2 = \int_{-\infty}^{\infty} \int_{-\infty}^{\infty} e^{-x^2} e^{-y^2} dx\,dy = \iint_{\mathbb{R}^2} e^{-(x^2+y^2)} \,dA$$
+
+To evaluate this double integral, we transition to polar coordinates $(r, \theta)$, defined by the relationships:
+
+$$x = r\cos\theta, \quad y = r\sin\theta, \quad x^2 + y^2 = r^2$$
+
+The infinitesimal area element in polar coordinates is given by $dA = r\,dr\,d\theta$. The boundaries of the entire plane $\mathbb{R}^2$ translate to:
+
+$$r \in [0, \infty), \quad \theta \in [0, 2\pi]$$
+
+Substituting these terms into our double integral yields:
+
+$$I^2 = \int_{0}^{2\pi} \int_{0}^{\infty} e^{-r^2} r \,dr\,d\theta$$
+
+We can evaluate this iterated integral by separation of variables:
+
+$$I^2 = \left( \int_{0}^{2\pi} d\theta \right) \left( \int_{0}^{\infty} e^{-r^2} r \,dr \right)$$
+
+The angular integral is straightforward:
+
+$$\int_{0}^{2\pi} d\theta = 2\pi$$
+
+For the radial integral, we perform a $u$-substitution. Let $u = r^2$, which implies $du = 2r\,dr$, or $r\,dr = \frac{1}{2}du$. The limits of integration remain $[0, \infty)$:
+
+$$\int_{0}^{\infty} e^{-r^2} r \,dr = \frac{1}{2} \int_{0}^{\infty} e^{-u} \,du = \frac{1}{2} \left[ -e^{-u} \right]_{0}^{\infty} = \frac{1}{2} (0 - (-1)) = \frac{1}{2}$$
+
+Multiplying the two results together gives:
+
+$$I^2 = 2\pi \cdot \frac{1}{2} = \pi$$
+
+Since the integrand $e^{-x^2}$ is strictly positive, the integral $I$ must also be positive. Taking the square root of both sides, we arrive at the final result:
+
+$$I = \sqrt{\pi}$$
+
+<blockquote class="pull">
+    <p>“A mathematician is one to whom that is as obvious as that twice two makes four is to you. Liouville was a mathematician.”</p>
+    <cite>— Lord Kelvin, referring to the Gaussian Integral formula</cite>
+</blockquote>
+
+## 3. Generalization {#section-3}
+
+A common generalization of the Gaussian integral involves adding a positive scaling parameter $a > 0$ to the exponent:
+
+$$I(a) = \int_{-\infty}^{\infty} e^{-ax^2} dx$$
+
+We can evaluate this by performing a simple linear substitution. Let $u = \sqrt{a}x$, which means $du = \sqrt{a}dx$, or $dx = \frac{1}{\sqrt{a}}du$. Substituting these variables into the integral:
+
+$$\int_{-\infty}^{\infty} e^{-ax^2} dx = \int_{-\infty}^{\infty} e^{-u^2} \frac{1}{\sqrt{a}} du = \frac{1}{\sqrt{a}} \int_{-\infty}^{\infty} e^{-u^2} du$$
+
+Since we know the value of the standard Gaussian integral is $\sqrt{\pi}$, this simplifies to:
+
+$$\int_{-\infty}^{\infty} e^{-ax^2} dx = \sqrt{\frac{\pi}{a}}$$
+
+This generalized form is extensively used in Fourier analysis, the study of diffusion processes, and the normalization of probability density functions in statistics.
