@@ -7,8 +7,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
     function handleScroll() {
         let scrollPosition = window.scrollY || document.documentElement.scrollTop;
-        // Detect section when it reaches top portion of viewport
-        scrollPosition += 180; 
+        // Calculate offset dynamically based on viewport height (35% from top is upper-middle)
+        const offset = window.innerHeight * 0.35;
+        scrollPosition += offset; 
 
         let activeSection = null;
         for (let i = 0; i < sections.length; i++) {

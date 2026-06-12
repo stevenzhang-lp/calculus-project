@@ -299,7 +299,8 @@ blockquote.pull cite {
     color: #888A90 !important;
 }
 
-#quarto-sidebar .sidebar-section .sidebar-section a:hover {
+#quarto-sidebar .sidebar-section .sidebar-section a:hover,
+#quarto-sidebar .sidebar-section .sidebar-section a.active {
     color: #FFFFFF !important;
 }
 
