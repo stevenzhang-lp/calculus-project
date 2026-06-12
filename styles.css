@@ -300,13 +300,21 @@ blockquote.pull cite {
     margin-top: 0.25rem !important;
 }
 
-#quarto-sidebar .sidebar-section .sidebar-section a {
+#quarto-sidebar .sidebar-section .sidebar-section .sidebar-item-container {
+    display: block !important;
+    width: 100% !important;
+}
+
+#quarto-sidebar .sidebar-section .sidebar-section a,
+#quarto-sidebar .sidebar-section .sidebar-section a .menu-text {
     font-size: 0.82rem !important;
     padding: 4px 8px !important;
     color: #888A90 !important;
-    display: inline-block !important;
-    max-width: 180px !important; /* Reduced further to ensure strict wrapping */
+    display: block !important;
+    width: 160px !important; /* Force a strict narrow width */
     white-space: normal !important;
+    word-break: normal !important;
+    overflow-wrap: break-word !important;
     line-height: 1.4 !important;
 }
 
