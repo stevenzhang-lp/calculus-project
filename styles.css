@@ -4,6 +4,7 @@
 :root {
     /* Premium Minimalist Palette: Black, Grey, White */
     --bg-primary: #FAFAFA;     /* Soft off-white main background */
+    --bg-surface: #FFFFFF;     /* Pure white for cards/callouts */
     --bg-sidebar: #1A1B1E;     /* Dark graphite for the left sidebar */
     --text-primary: #111111;   /* Rich obsidian black for primary headings/emphasis */
     --text-secondary: #374151; /* Dark grey for readable body prose */
@@ -18,6 +19,21 @@
     --bs-body-color: var(--text-secondary);
     --bs-link-color: var(--accent);
     --bs-link-hover-color: var(--text-primary);
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --bg-primary: #121212;
+        --bg-surface: #1E1E1E;
+        --bg-sidebar: #0A0A0A;
+        --text-primary: #F9FAFB;
+        --text-secondary: #D1D5DB;
+        --text-muted: #9CA3AF;
+        --accent: #FFFFFF;
+        --accent-subtle: #1F2937;
+        --border: #374151;
+        --border-soft: #1F2937;
+    }
 }
 
 body {
@@ -93,7 +109,7 @@ h2 {
 .callout.intro {
     display: flex; 
     gap: 1rem; 
-    background: #FFFFFF; 
+    background: var(--bg-surface); 
     border: 1px solid var(--border);
     border-left: 2px solid var(--accent); 
     border-radius: 8px; 
@@ -174,7 +190,7 @@ blockquote.pull cite {
 }
 
 .figbox { 
-    background: #FFFFFF; 
+    background: var(--bg-surface); 
     border: 1px solid var(--border); 
     border-radius: 8px; 
     padding: 1.5rem; 
@@ -197,6 +213,11 @@ blockquote.pull cite {
 
 /* Header & Navbar - Hidden */
 #quarto-header {
+    display: none !important;
+}
+
+/* Hide Quarto Footer */
+.nav-footer, #quarto-margin-sidebar, .quarto-margin-sidebar {
     display: none !important;
 }
 
