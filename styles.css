@@ -212,7 +212,7 @@ blockquote.pull cite {
         margin: 0 !important;
         border-right: 1px solid #2D2E32 !important;
         background-color: var(--bg-sidebar) !important;
-        padding: 4rem 1.5rem 2rem 2rem !important;
+        padding: 2rem 1.5rem 2rem 2rem !important; /* Reduced top padding to 2rem to align title to top-left */
         z-index: 1000;
         overflow-y: auto;
     }
@@ -252,12 +252,18 @@ blockquote.pull cite {
 }
 
 /* Sidebar Custom Styling (Dark Theme for Sidebar) */
+#quarto-sidebar .sidebar-header {
+    padding-top: 0 !important;
+    margin-top: 0 !important;
+}
+
 #quarto-sidebar .sidebar-title {
     font-family: "Playfair Display", serif;
     font-weight: 700;
     font-size: 1.35rem;
     color: #FFFFFF !important;
     letter-spacing: -0.01em;
+    margin-top: 0 !important;
     margin-bottom: 1.5rem;
 }
 

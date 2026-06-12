@@ -1,5 +1,0 @@
----
-title: "Instructions"
----
-
-Placeholder content for Instructions.

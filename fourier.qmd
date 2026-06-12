@@ -1,5 +1,0 @@
----
-title: "Fourier Series"
----
-
-Placeholder content for Fourier Series.

@@ -5,22 +5,10 @@ website:
   title: "Calculus Stories"
   sidebar:
     style: "docked"
-    search: true
+    search: false
     contents:
-      - href: index.qmd
-        text: Home
-      - section: "Core Topics"
-        contents:
-          - text: "Fourier Series"
-            href: fourier.qmd
-          - text: "Continuity"
-            href: continuity.qmd
-      - section: "Extra"
-        contents:
-          - text: "Instructions"
-            href: instructions.qmd
-          - text: "Gaussian integral"
-            href: gaussian.qmd
+      - text: "Gaussian integral"
+        href: gaussian.qmd
 
 format:
   html:
