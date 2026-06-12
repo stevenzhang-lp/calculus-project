@@ -30,4 +30,5 @@ format:
     theme: default
     css: styles.css
     toc: false
+    include-in-header: header.html
     include-after-body: footer.html
