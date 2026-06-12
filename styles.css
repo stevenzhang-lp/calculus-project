@@ -303,8 +303,10 @@ blockquote.pull cite {
     margin-left: 0.5rem !important;
     border-left: 1px solid #2D2E32 !important;
     padding-left: 0.5rem !important;
-    margin-top: 0 !important;
-    padding-top: 0.25rem !important;
+}
+
+#quarto-sidebar .sidebar-section .sidebar-section > li:first-child {
+    margin-top: 0.25rem !important;
 }
 
 #quarto-sidebar .sidebar-section .sidebar-section a {
