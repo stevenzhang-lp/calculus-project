@@ -7,11 +7,11 @@ subtitle: "An elegant derivation of the classical Euler–Poisson integral using
 
 <!-- Definition Callout -->
 <div class="callout intro">
-    <span class="ic">Definition</span>
-    <span class="body">The Gaussian integral, also known as the Euler–Poisson integral, is the integral of the Gaussian function $f(x) = e^{-x^2}$ over the entire real line:
-    <br><br>
-    $$\int_{-\infty}^{\infty} e^{-x^2} dx = \sqrt{\pi}$$
-    </span>
+<span class="ic">Definition</span>
+<span class="body">The Gaussian integral, also known as the Euler–Poisson integral, is the integral of the Gaussian function $f(x) = e^{-x^2}$ over the entire real line:
+<br><br>
+$$\int_{-\infty}^{\infty} e^{-x^2} dx = \sqrt{\pi}$$
+</span>
 </div>
 
 ## 1. Introduction {#section-1}
@@ -69,8 +69,8 @@ Since the integrand $e^{-x^2}$ is strictly positive, the integral $I$ must also 
 $$I = \sqrt{\pi}$$
 
 <blockquote class="pull">
-    <p>“A mathematician is one to whom that is as obvious as that twice two makes four is to you. Liouville was a mathematician.”</p>
-    <cite>— Lord Kelvin, referring to the Gaussian Integral formula</cite>
+<p>“A mathematician is one to whom that is as obvious as that twice two makes four is to you. Liouville was a mathematician.”</p>
+<cite>— Lord Kelvin, referring to the Gaussian Integral formula</cite>
 </blockquote>
 
 ## 3. Generalization {#section-3}
