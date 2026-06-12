@@ -3,6 +3,6 @@ title: "Home"
 ---
 
 <div class="home-hero">
-    <h1 class="home-title">We are Algebraic.</h1>
-    <p class="home-subtitle">Exploring the beauty of mathematical structures and historical derivations.</p>
+<h1 class="home-title">We are Algebraic.</h1>
+<p class="home-subtitle">Exploring the beauty of mathematical structures and historical derivations.</p>
 </div>
