@@ -1,40 +1,39 @@
-/* Import fonts */
-@import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,340..560;1,9..144,340..480&family=Hanken+Grotesk:wght@400;500;600&display=swap');
+/* Import premium fonts */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap');
 
 :root {
-    /* Academic/Paper Color Palette Scheme */
-    --paper: #F4EEE3;        /* Main global background */
-    --paper-2: #EDE3D2;      /* Secondary background */
-    --card: #F8F3EA;         /* Card background components */
-    --ink: #221C15;          /* Dominant text color (Deep Ink) */
-    --ink-soft: #6B6151;     /* Subdued body text color */
-    --ink-faint: #9A8E79;    /* Muted label/meta text */
-    --accent: #B0502C;       /* Terracotta/Amber primary branding color */
-    --accent-2: #3E6B6E;     /* Teal/Slate secondary semantic accent */
-    --ghost: #C9BCA4;        /* Placeholder colors */
-    --line: #DDD1BC;         /* Distinct solid borders */
-    --line-soft: #E7DECE;    /* Subtle soft section split lines */
+    /* Premium Minimalist Palette: Black, Grey, White */
+    --bg-primary: #FAFAFA;     /* Soft off-white main background */
+    --bg-sidebar: #FFFFFF;     /* Pure white card/sidebar background */
+    --text-primary: #111111;   /* Rich obsidian black for primary headings/emphasis */
+    --text-secondary: #374151; /* Dark grey for readable body prose */
+    --text-muted: #6B7280;     /* Muted steel grey for captions and metadata */
+    --accent: #000000;         /* Stark black accent */
+    --accent-subtle: #F3F4F6;  /* Extremely soft grey for hover/highlight states */
+    --border: #E5E7EB;         /* Clean, thin borders */
+    --border-soft: #F3F4F6;    /* Very faint separation lines */
 
     /* Override Bootstrap variables for Quarto */
-    --bs-body-bg: var(--paper);
-    --bs-body-color: var(--ink);
+    --bs-body-bg: var(--bg-primary);
+    --bs-body-color: var(--text-secondary);
     --bs-link-color: var(--accent);
-    --bs-link-hover-color: var(--accent-2);
+    --bs-link-hover-color: var(--text-primary);
 }
 
 body {
-    background: var(--paper);
-    color: var(--ink);
-    font-family: "Hanken Grotesk", sans-serif;
-    font-size: 17.5px;
-    line-height: 1.72;
+    font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    background-color: var(--bg-primary);
+    color: var(--text-secondary);
+    font-size: 16.5px;
+    line-height: 1.75;
+    letter-spacing: -0.011em;
     -webkit-font-smoothing: antialiased;
 }
 
-/* Ambient grain-noise paper overlay texture */
+/* Ambient grain-noise paper overlay texture for a premium tactile feel */
 body::before {
     content: ""; position: fixed; inset: 0; pointer-events: none; z-index: 9999;
-    opacity: .045; mix-blend-mode: multiply;
+    opacity: .03; mix-blend-mode: multiply;
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
 }
 
@@ -42,127 +41,261 @@ body::before {
 a {
     color: var(--accent);
     text-decoration: none;
-    transition: color .2s;
+    transition: color .2s ease;
 }
 a:hover {
-    color: var(--accent-2);
+    color: var(--text-primary);
 }
 
 /* Headings */
 h1, h2, h3, h4, h5, h6, .navbar-brand {
-    font-family: "Fraunces", serif;
-    color: var(--ink);
+    font-family: "Playfair Display", Georgia, serif;
+    color: var(--text-primary);
+    font-weight: 600;
 }
 
 h1.title {
-    font-weight: 360;
-    font-size: clamp(36px, 5.4vw, 58px);
-    line-height: 1.04;
-    letter-spacing: -.015em;
-    margin-bottom: 18px;
+    font-size: clamp(32px, 4.5vw, 52px);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    line-height: 1.1;
+    margin-bottom: 0.75rem;
 }
 
 .subtitle {
-    font-size: 20px;
-    color: var(--ink-soft);
-    max-width: 560px;
-    line-height: 1.5;
-    margin-bottom: 30px;
+    font-family: "Inter", sans-serif;
+    font-size: 1.15rem;
+    font-weight: 400;
+    color: var(--text-muted);
+    line-height: 1.6;
+    margin-bottom: 2rem;
+    max-width: 650px;
 }
 
 h2 {
-    font-family: "Fraunces";
-    font-weight: 400;
-    font-size: clamp(25px, 3.3vw, 34px);
-    line-height: 1.12;
-    letter-spacing: -.01em;
-    margin: 54px 0 18px;
-    scroll-margin-top: 72px;
+    font-family: "Playfair Display", serif;
+    font-size: clamp(22px, 3vw, 30px);
+    font-weight: 600;
+    letter-spacing: -0.015em;
+    border-bottom: 1px solid var(--border-soft);
+    padding-bottom: 0.5rem;
+    margin-top: 3.5rem;
+    margin-bottom: 1.25rem;
 }
 
-.eyebrow {
-    font-size: 12.5px;
-    text-transform: uppercase;
-    letter-spacing: .2em;
-    color: var(--accent);
-    font-weight: 600;
-    margin-bottom: 20px;
+/* LaTeX / KaTeX block formulas styling */
+.katex-display {
+    padding: 1.5rem 0;
+    color: var(--text-primary);
 }
 
 /* Custom Component Utilities */
 .callout.intro {
-    display: flex; gap: 14px; background: var(--card); border: 1px solid var(--line);
-    border-left: 4px solid var(--accent-2); border-radius: 5px; padding: 16px 18px; margin: 26px 0; font-size: 15px;
+    display: flex; 
+    gap: 1rem; 
+    background: var(--bg-sidebar); 
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--accent); 
+    border-radius: 8px; 
+    padding: 1.25rem 1.5rem; 
+    margin: 2rem 0; 
+    font-size: 0.95rem;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.01);
 }
-.callout.intro .ic { flex: 0 0 auto; color: var(--accent-2); font-family: "Fraunces"; font-style: italic; font-weight: 500; }
-.callout.intro .body { color: var(--ink-soft); }
-.callout.intro .body b { color: var(--ink); }
+.callout.intro .ic { 
+    flex: 0 0 auto; 
+    color: var(--text-primary); 
+    font-family: "Playfair Display", serif; 
+    font-style: italic; 
+    font-weight: 700; 
+}
+.callout.intro .body { 
+    color: var(--text-secondary); 
+}
+.callout.intro .body b { 
+    color: var(--text-primary); 
+}
 
-figure { margin: 32px auto; text-align: center; }
-.portraits { display: flex; gap: 18px; justify-content: center; flex-wrap: wrap; }
-.portrait { width: 150px; }
-.portrait img { width: 150px; height: 178px; border-radius: 5px; object-fit: cover; background: var(--paper-2); border: 1px solid var(--line); display: block; }
-figcaption { font-style: italic; font-family: "Fraunces"; font-weight: 340; font-size: 14px; color: var(--ink-soft); margin-top: 14px; line-height: 1.45; max-width: 560px; margin-left: auto; margin-right: auto; }
-.pname { font-style: normal; font-weight: 500; color: var(--ink); font-size: 14px; margin-top: 8px; display: block; }
+figure { margin: 2.5rem 0; text-align: center; }
+.portraits { display: flex; gap: 1.5rem; justify-content: center; flex-wrap: wrap; }
+.portrait { width: 150px; transition: transform 0.2s ease; }
+.portrait:hover { transform: translateY(-2px); }
+.portrait img { 
+    width: 150px; 
+    height: 178px; 
+    border-radius: 8px; 
+    object-fit: cover; 
+    background: var(--accent-subtle); 
+    border: 1px solid var(--border); 
+    display: block; 
+}
+figcaption { 
+    font-family: "Inter", sans-serif; 
+    font-size: 0.85rem; 
+    color: var(--text-muted); 
+    margin-top: 1rem; 
+    line-height: 1.5; 
+    max-width: 580px; 
+    margin-left: auto; 
+    margin-right: auto; 
+}
+.pname { 
+    font-family: "Inter", sans-serif;
+    font-style: normal; 
+    font-weight: 600; 
+    color: var(--text-primary); 
+    font-size: 0.85rem; 
+    margin-top: 0.5rem; 
+    display: block; 
+}
 
-blockquote.pull { margin: 46px 0; padding: 0 0 0 24px; border-left: 3px solid var(--accent); }
-blockquote.pull p { font-family: "Fraunces"; font-style: italic; font-weight: 340; font-size: clamp(21px, 2.8vw, 27px); line-height: 1.3; color: var(--ink); margin: 0; }
-blockquote.pull cite { display: block; margin-top: 14px; font-style: normal; font-size: 13.5px; color: var(--ink-soft); letter-spacing: .02em; }
+blockquote.pull { 
+    margin: 3rem 0; 
+    padding: 0 0 0 1.5rem; 
+    border-left: 2px solid var(--accent); 
+}
+blockquote.pull p { 
+    font-family: "Playfair Display", serif; 
+    font-style: italic; 
+    font-weight: 400; 
+    font-size: clamp(18px, 2.5vw, 24px); 
+    line-height: 1.4; 
+    color: var(--text-primary); 
+    margin: 0; 
+}
+blockquote.pull cite { 
+    display: block; 
+    margin-top: 0.75rem; 
+    font-style: normal; 
+    font-size: 0.8rem; 
+    color: var(--text-muted); 
+    text-transform: uppercase; 
+    letter-spacing: 0.06em; 
+}
 
-.figbox { background: var(--card); border: 1px solid var(--line); border-radius: 7px; padding: 24px 22px 20px; margin: 32px 0; }
-.figbox .cap { font-size: 12px; text-transform: uppercase; letter-spacing: .14em; color: var(--ink-faint); margin-bottom: 16px; }
+.figbox { 
+    background: var(--bg-sidebar); 
+    border: 1px solid var(--border); 
+    border-radius: 8px; 
+    padding: 1.5rem; 
+    margin: 2.5rem 0; 
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.01);
+}
+.figbox .cap { 
+    font-family: "Inter", sans-serif;
+    font-size: 0.75rem; 
+    text-transform: uppercase; 
+    letter-spacing: 0.06em; 
+    font-weight: 600; 
+    color: var(--text-muted); 
+    margin-bottom: 1rem; 
+    border-bottom: 1px solid var(--border-soft);
+    padding-bottom: 0.5rem;
+}
 
-/* Override Quarto Default Styles to Match Custom Aesthetic */
+/* Quarto Layout Component Overrides */
+
+/* Header & Navbar */
 #quarto-header .navbar {
-    background: rgba(244, 238, 227, .86) !important;
-    backdrop-filter: saturate(140%) blur(8px);
-    border-bottom: 1px solid var(--line) !important;
+    background: rgba(255, 255, 255, 0.8) !important;
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--border) !important;
+    padding: 0.75rem 1.5rem;
 }
 
-#quarto-header .navbar-brand, #quarto-header .nav-link {
-    color: var(--ink) !important;
+#quarto-header .navbar-brand {
+    font-weight: 700;
+    font-size: 1.2rem;
+    letter-spacing: -0.01em;
+}
+
+#quarto-header .nav-link {
+    font-family: "Inter", sans-serif;
+    font-weight: 500;
+    font-size: 0.9rem;
+    color: var(--text-secondary) !important;
+    transition: color 0.2s ease;
 }
 
 #quarto-header .nav-link:hover, #quarto-header .nav-link.active {
     color: var(--accent) !important;
 }
 
+/* Sidebar */
 #quarto-sidebar {
-    background-color: var(--paper) !important;
-    border-right: 1px solid var(--line) !important;
+    background-color: var(--bg-sidebar) !important;
+    border-right: 1px solid var(--border) !important;
+    padding-top: 1.5rem;
 }
 
-#quarto-sidebar .sidebar-item-text, #quarto-sidebar .sidebar-navigation {
-    color: var(--ink-soft) !important;
+#quarto-sidebar .sidebar-navigation {
+    font-family: "Inter", sans-serif;
 }
 
-#quarto-sidebar a.active, #quarto-sidebar a:hover {
+#quarto-sidebar .sidebar-item-text, #quarto-sidebar .sidebar-item-toggle {
+    color: var(--text-secondary) !important;
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+#quarto-sidebar a {
+    padding: 6px 12px !important;
+    border-radius: 6px;
+    transition: all 0.2s ease;
+}
+
+#quarto-sidebar a.active {
     color: var(--accent) !important;
-    background: var(--line-soft) !important;
+    background-color: var(--accent-subtle) !important;
+    font-weight: 600 !important;
 }
 
-/* TOC (Table of Contents) Override */
+#quarto-sidebar a:hover:not(.active) {
+    background-color: var(--border-soft) !important;
+    color: var(--text-primary) !important;
+}
+
+/* TOC (Table of Contents) */
 #TOC {
-    border-left: 2px solid var(--line-soft);
-    padding-left: 12px;
+    border-left: 1px solid var(--border) !important;
+    padding-left: 1rem;
+    margin-top: 1.5rem;
+}
+
+#TOC .toc-title {
+    font-family: "Inter", sans-serif;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    font-weight: 600;
+    color: var(--text-muted);
+    margin-bottom: 0.75rem;
 }
 
 #TOC a {
-    color: var(--ink-faint) !important;
-    font-size: 13px;
+    font-family: "Inter", sans-serif;
+    font-size: 0.85rem;
+    color: var(--text-muted) !important;
+    transition: all 0.2s ease;
+    padding: 4px 0;
+    display: block;
 }
 
 #TOC a:hover {
-    color: var(--ink-soft) !important;
+    color: var(--text-primary) !important;
 }
 
 #TOC .active {
     color: var(--accent) !important;
-    border-left-color: var(--accent) !important;
+    font-weight: 500;
+    border-left: 2px solid var(--accent);
+    margin-left: -1rem;
+    padding-left: calc(1rem - 2px);
 }
 
-/* Main Content Padding and Max Width matching original design */
+/* Page container layout overrides */
 #quarto-document-content {
-    max-width: 720px;
+    max-width: 760px;
     margin: 0 auto;
+    padding-top: 2rem;
 }
