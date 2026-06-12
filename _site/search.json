@@ -1,0 +1,56 @@
+[
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "We are Algebraic.",
+    "section": "",
+    "text": "We are Algebraic.",
+    "crumbs": [
+      "Home"
+    ]
+  },
+  {
+    "objectID": "gaussian.html",
+    "href": "gaussian.html",
+    "title": "The Gaussian Integral",
+    "section": "",
+    "text": "Definition The Gaussian integral, also known as the Euler–Poisson integral, is the integral of the Gaussian function \\(f(x) = e^{-x^2}\\) over the entire real line:  \\[\\int_{-\\infty}^{\\infty} e^{-x^2} dx = \\sqrt{\\pi}\\]",
+    "crumbs": [
+      "Core Topics",
+      "Gaussian integral"
+    ]
+  },
+  {
+    "objectID": "gaussian.html#section-1",
+    "href": "gaussian.html#section-1",
+    "title": "The Gaussian Integral",
+    "section": "1. Introduction",
+    "text": "1. Introduction\nThe Gaussian integral is of fundamental importance in mathematics, physics, and statistics. It forms the basis of the normal (Gaussian) distribution in probability theory, appears in the evaluation of partition functions in statistical mechanics, and describes the ground state wave function of the quantum harmonic oscillator.\nDespite its simplicity and widespread utility, evaluating the integral presents a unique challenge: the integrand \\(e^{-x^2}\\) does not possess an elementary antiderivative. Consequently, standard techniques like the Fundamental Theorem of Calculus cannot be applied directly. To find its value, we must turn to more sophisticated multi-variable calculus techniques.",
+    "crumbs": [
+      "Core Topics",
+      "Gaussian integral"
+    ]
+  },
+  {
+    "objectID": "gaussian.html#section-2",
+    "href": "gaussian.html#section-2",
+    "title": "The Gaussian Integral",
+    "section": "2. The Polar Coordinates Derivation",
+    "text": "2. The Polar Coordinates Derivation\nThe classic proof, attributed to Siméon Denis Poisson, involves evaluating the square of the integral by transforming a two-dimensional double integral from Cartesian to polar coordinates.\nLet \\(I\\) denote the value of the Gaussian integral:\n\\[I = \\int_{-\\infty}^{\\infty} e^{-x^2} dx\\]\nSince the variable of integration is a dummy variable, we can write the square of this integral as the product of two independent single integrals:\n\\[I^2 = \\left( \\int_{-\\infty}^{\\infty} e^{-x^2} dx \\right) \\left( \\int_{-\\infty}^{\\infty} e^{-y^2} dy \\right)\\]\nBy Fubini’s theorem, we can combine these two single integrals into a double integral over the entire two-dimensional Cartesian plane \\(\\mathbb{R}^2\\):\n\\[I^2 = \\int_{-\\infty}^{\\infty} \\int_{-\\infty}^{\\infty} e^{-x^2} e^{-y^2} dx\\,dy = \\iint_{\\mathbb{R}^2} e^{-(x^2+y^2)} \\,dA\\]\nTo evaluate this double integral, we transition to polar coordinates \\((r, \\theta)\\), defined by the relationships:\n\\[x = r\\cos\\theta, \\quad y = r\\sin\\theta, \\quad x^2 + y^2 = r^2\\]\nThe infinitesimal area element in polar coordinates is given by \\(dA = r\\,dr\\,d\\theta\\). The boundaries of the entire plane \\(\\mathbb{R}^2\\) translate to:\n\\[r \\in [0, \\infty), \\quad \\theta \\in [0, 2\\pi]\\]\nSubstituting these terms into our double integral yields:\n\\[I^2 = \\int_{0}^{2\\pi} \\int_{0}^{\\infty} e^{-r^2} r \\,dr\\,d\\theta\\]\nWe can evaluate this iterated integral by separation of variables:\n\\[I^2 = \\left( \\int_{0}^{2\\pi} d\\theta \\right) \\left( \\int_{0}^{\\infty} e^{-r^2} r \\,dr \\right)\\]\nThe angular integral is straightforward:\n\\[\\int_{0}^{2\\pi} d\\theta = 2\\pi\\]\nFor the radial integral, we perform a \\(u\\)-substitution. Let \\(u = r^2\\), which implies \\(du = 2r\\,dr\\), or \\(r\\,dr = \\frac{1}{2}du\\). The limits of integration remain \\([0, \\infty)\\):\n\\[\\int_{0}^{\\infty} e^{-r^2} r \\,dr = \\frac{1}{2} \\int_{0}^{\\infty} e^{-u} \\,du = \\frac{1}{2} \\left[ -e^{-u} \\right]_{0}^{\\infty} = \\frac{1}{2} (0 - (-1)) = \\frac{1}{2}\\]\nMultiplying the two results together gives:\n\\[I^2 = 2\\pi \\cdot \\frac{1}{2} = \\pi\\]\nSince the integrand \\(e^{-x^2}\\) is strictly positive, the integral \\(I\\) must also be positive. Taking the square root of both sides, we arrive at the final result:\n\\[I = \\sqrt{\\pi}\\]\n\n\n“A mathematician is one to whom that is as obvious as that twice two makes four is to you. Liouville was a mathematician.”\n\n— Lord Kelvin, referring to the Gaussian Integral formula",
+    "crumbs": [
+      "Core Topics",
+      "Gaussian integral"
+    ]
+  },
+  {
+    "objectID": "gaussian.html#section-3",
+    "href": "gaussian.html#section-3",
+    "title": "The Gaussian Integral",
+    "section": "3. Generalization",
+    "text": "3. Generalization\nA common generalization of the Gaussian integral involves adding a positive scaling parameter \\(a &gt; 0\\) to the exponent:\n\\[I(a) = \\int_{-\\infty}^{\\infty} e^{-ax^2} dx\\]\nWe can evaluate this by performing a simple linear substitution. Let \\(u = \\sqrt{a}x\\), which means \\(du = \\sqrt{a}dx\\), or \\(dx = \\frac{1}{\\sqrt{a}}du\\). Substituting these variables into the integral:\n\\[\\int_{-\\infty}^{\\infty} e^{-ax^2} dx = \\int_{-\\infty}^{\\infty} e^{-u^2} \\frac{1}{\\sqrt{a}} du = \\frac{1}{\\sqrt{a}} \\int_{-\\infty}^{\\infty} e^{-u^2} du\\]\nSince we know the value of the standard Gaussian integral is \\(\\sqrt{\\pi}\\), this simplifies to:\n\\[\\int_{-\\infty}^{\\infty} e^{-ax^2} dx = \\sqrt{\\frac{\\pi}{a}}\\]\nThis generalized form is extensively used in Fourier analysis, the study of diffusion processes, and the normalization of probability density functions in statistics.",
+    "crumbs": [
+      "Core Topics",
+      "Gaussian integral"
+    ]
+  }
+]
