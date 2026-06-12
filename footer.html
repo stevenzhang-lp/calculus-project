@@ -1,9 +1,41 @@
 <script>
 document.addEventListener("DOMContentLoaded", function () {
     const spyLinks = document.querySelectorAll('#quarto-sidebar a[href*="#section-"]');
-    const sections = [...document.querySelectorAll('h2[id]')];
     
-    if (sections.length === 0 || spyLinks.length === 0) return;
+    // Find target elements dynamically using the hashes in the sidebar links
+    const sections = [];
+    spyLinks.forEach(link => {
+        const href = link.getAttribute('href');
+        if (href && href.includes('#')) {
+            const hash = href.substring(href.indexOf('#'));
+            try {
+                const target = document.querySelector(hash);
+                if (target) {
+                    sections.push({ link: link, target: target });
+                }
+            } catch(e) {}
+        }
+    });
+    
+    // Intercept clicks on outline links: Smooth scroll without changing URL hash
+    spyLinks.forEach(link => {
+        link.addEventListener("click", function (e) {
+            const href = this.getAttribute('href');
+            if (href && href.includes('#')) {
+                const hash = href.substring(href.indexOf('#'));
+                try {
+                    const target = document.querySelector(hash);
+                    if (target) {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        target.scrollIntoView({ behavior: 'smooth' });
+                    }
+                } catch(e) {}
+            }
+        }, true);
+    });
+
+    if (sections.length === 0) return;
 
     function handleScroll() {
         let scrollPosition = window.scrollY || document.documentElement.scrollTop;
@@ -11,28 +43,29 @@ document.addEventListener("DOMContentLoaded", function () {
         const offset = window.innerHeight * 0.35;
         scrollPosition += offset; 
 
-        let activeSection = null;
+        let activeSectionIndex = -1;
         for (let i = 0; i < sections.length; i++) {
-            // Get absolute top position relative to the document
-            const absoluteTop = sections[i].getBoundingClientRect().top + window.scrollY;
+            const absoluteTop = sections[i].target.getBoundingClientRect().top + window.scrollY;
             if (absoluteTop <= scrollPosition) {
-                activeSection = sections[i];
+                activeSectionIndex = i;
             }
         }
 
-        spyLinks.forEach(link => {
-            link.classList.remove('active');
-            if (activeSection) {
-                const href = link.getAttribute('href');
-                if (href && href.endsWith('#' + activeSection.id)) {
-                    link.classList.add('active');
-                }
+        sections.forEach((item, index) => {
+            if (index === activeSectionIndex) {
+                item.link.classList.add('active');
+                item.link.style.color = '#FFFFFF';
+                item.link.style.fontWeight = '600';
+            } else {
+                item.link.classList.remove('active');
+                item.link.style.color = '';
+                item.link.style.fontWeight = '';
             }
         });
     }
 
     window.addEventListener('scroll', handleScroll);
     window.addEventListener('resize', handleScroll);
-    handleScroll(); // Trigger once on load
+    setTimeout(handleScroll, 100); // Trigger once on load
 });
 </script>

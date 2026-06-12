@@ -3,6 +3,8 @@ project:
 
 website:
   title: "Calculus Stories"
+  bread-crumbs: false
+  page-navigation: false
   sidebar:
     style: "docked"
     search: false
