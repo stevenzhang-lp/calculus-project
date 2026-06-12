@@ -5,7 +5,7 @@ website:
   title: "Gaussian integral"
   navbar:
     left:
-      - href: gaussian-integral.qmd
+      - href: gaussian.qmd
         text: "Gaussian integral"
   sidebar:
     style: "docked"
@@ -14,7 +14,7 @@ website:
       - section: "Topics"
         contents:
           - text: "Gaussian integral"
-            href: gaussian-integral.qmd
+            href: gaussian.qmd
 
 format:
   html:

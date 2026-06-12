@@ -2,6 +2,6 @@
 title: "Redirecting..."
 ---
 
-<meta http-equiv="refresh" content="0; url=gaussian-integral.html">
+<meta http-equiv="refresh" content="0; url=gaussian.html">
 
-<p>Redirecting to <a href="gaussian-integral.html">Gaussian integral</a>...</p>
+<p>Redirecting to <a href="gaussian.html">Gaussian integral</a>...</p>
