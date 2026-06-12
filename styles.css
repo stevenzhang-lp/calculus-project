@@ -4,7 +4,7 @@
 :root {
     /* Premium Minimalist Palette: Black, Grey, White */
     --bg-primary: #FAFAFA;     /* Soft off-white main background */
-    --bg-sidebar: #FFFFFF;     /* Pure white card/sidebar background */
+    --bg-sidebar: #1A1B1E;     /* Dark graphite for the left sidebar */
     --text-primary: #111111;   /* Rich obsidian black for primary headings/emphasis */
     --text-secondary: #374151; /* Dark grey for readable body prose */
     --text-muted: #6B7280;     /* Muted steel grey for captions and metadata */
@@ -93,7 +93,7 @@ h2 {
 .callout.intro {
     display: flex; 
     gap: 1rem; 
-    background: var(--bg-sidebar); 
+    background: #FFFFFF; 
     border: 1px solid var(--border);
     border-left: 2px solid var(--accent); 
     border-radius: 8px; 
@@ -174,7 +174,7 @@ blockquote.pull cite {
 }
 
 .figbox { 
-    background: var(--bg-sidebar); 
+    background: #FFFFFF; 
     border: 1px solid var(--border); 
     border-radius: 8px; 
     padding: 1.5rem; 
@@ -200,50 +200,126 @@ blockquote.pull cite {
     display: none !important;
 }
 
-/* Responsive Sidebar & Content Layout - Flush Left on Desktop */
+/* Desktop 3-Column Layout: Sidebar Left, Content Center, TOC Right */
 @media (min-width: 992px) {
+    /* Left Sidebar: Fixed and Flush-Left */
     #quarto-sidebar {
         position: fixed !important;
         left: 0 !important;
         top: 0 !important;
         bottom: 0 !important;
-        width: 280px !important;
+        width: 260px !important;
         margin: 0 !important;
-        border-right: 1px solid var(--border) !important;
+        border-right: 1px solid #2D2E32 !important;
         background-color: var(--bg-sidebar) !important;
-        padding: 5rem 1.5rem 2rem 2.5rem !important;
+        padding: 4rem 1.5rem 2rem 2rem !important;
         z-index: 1000;
         overflow-y: auto;
     }
 
+    /* Right TOC: Fixed and Flush-Right */
+    .quarto-margin-sidebar {
+        position: fixed !important;
+        right: 0 !important;
+        top: 0 !important;
+        bottom: 0 !important;
+        width: 240px !important;
+        margin: 0 !important;
+        background-color: var(--bg-primary) !important;
+        padding: 5rem 2rem 2rem 1.5rem !important;
+        z-index: 999;
+        border-left: none !important;
+    }
+
+    /* Container: occupy full width and center the main content area */
     #quarto-content {
-        margin-left: 280px !important;
-        max-width: calc(100% - 280px) !important;
+        padding-left: 260px !important;  /* Space for left sidebar */
+        padding-right: 240px !important; /* Space for right TOC */
+        width: 100% !important;
+        max-width: 100% !important;
+        box-sizing: border-box !important;
+    }
+
+    /* Main article content centered between sidebar and TOC */
+    main.content {
+        margin-left: auto !important;
+        margin-right: auto !important;
+        max-width: 780px !important;
+        padding-top: 5rem !important;
+        padding-left: 2rem !important;
+        padding-right: 2rem !important;
     }
 }
 
-/* TOC (Table of Contents) - High-End Minimalist Left Sidebar Redesign */
+/* Sidebar Custom Styling (Dark Theme for Sidebar) */
+#quarto-sidebar .sidebar-title {
+    font-family: "Playfair Display", serif;
+    font-weight: 700;
+    font-size: 1.35rem;
+    color: #FFFFFF !important;
+    letter-spacing: -0.01em;
+    margin-bottom: 1.5rem;
+}
+
+#quarto-sidebar .sidebar-item-text, 
+#quarto-sidebar .sidebar-item-toggle,
+#quarto-sidebar .sidebar-navigation {
+    color: #A0A5B1 !important;
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+#quarto-sidebar a {
+    padding: 6px 12px !important;
+    border-radius: 6px;
+    color: #A0A5B1 !important;
+    transition: all 0.2s ease;
+}
+
+#quarto-sidebar a:hover:not(.active) {
+    background-color: #2D2E32 !important;
+    color: #FFFFFF !important;
+}
+
+#quarto-sidebar a.active {
+    color: #FFFFFF !important;
+    background-color: #2D2E32 !important;
+    font-weight: 600 !important;
+}
+
+/* Sidebar Search Bar Styling (Dark Input) */
+.quarto-search-container input {
+    background-color: #2D2E32 !important;
+    border: 1px solid #3F4045 !important;
+    color: #FFFFFF !important;
+    border-radius: 6px;
+}
+.quarto-search-container input::placeholder {
+    color: #6B7280 !important;
+}
+#quarto-search-key {
+    color: #888A90 !important;
+    background-color: #3F4045 !important;
+}
+
+/* TOC (Table of Contents) - Right Sidebar Styling */
 #TOC {
-    border-left: none !important;
-    border-right: none !important;
-    padding-left: 1.5rem;
-    padding-right: 1.5rem;
+    border-left: 1px solid var(--border) !important;
+    padding-left: 1.25rem;
     margin-top: 0;
-    position: sticky;
-    top: 5rem;
 }
 
 #TOC .toc-title {
-    font-family: "Playfair Display", Georgia, serif;
-    font-size: 1.15rem;
-    font-weight: 700;
+    font-family: "Inter", sans-serif;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-weight: 600;
     color: var(--text-primary) !important;
-    margin-bottom: 1.5rem;
-    padding-bottom: 0.75rem;
+    margin-bottom: 1rem;
+    padding-bottom: 0.25rem;
     border-bottom: 1px solid var(--border-soft);
-    line-height: 1.25;
-    text-transform: none; /* Keep natural capitalization for big title */
-    letter-spacing: normal;
+    line-height: 1.4;
 }
 
 #TOC ul {
@@ -258,11 +334,11 @@ blockquote.pull cite {
 
 #TOC a {
     font-family: "Inter", sans-serif;
-    font-size: 0.85rem;
+    font-size: 0.82rem;
     line-height: 1.45;
     color: var(--text-muted) !important;
     transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-    padding: 4px 0;
+    padding: 2px 0;
     display: inline-block;
 }
 
@@ -275,16 +351,9 @@ blockquote.pull cite {
     color: var(--text-primary) !important;
     font-weight: 600;
     border-left: 2px solid var(--text-primary) !important;
+    margin-left: -1.25rem;
+    padding-left: calc(1.25rem - 2px) !important;
     border-right: none !important;
-    margin-left: -1.5rem;
-    padding-left: calc(1.5rem - 2px) !important;
     margin-right: 0;
     padding-right: 0 !important;
-}
-
-/* Page container layout overrides */
-#quarto-document-content {
-    max-width: 760px;
-    margin: 0 auto;
-    padding-top: 5rem;
 }

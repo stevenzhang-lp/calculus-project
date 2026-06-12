@@ -2,12 +2,29 @@ project:
   type: website
 
 website:
-  title: "Gaussian integral"
+  title: "Calculus Stories"
+  sidebar:
+    style: "docked"
+    search: true
+    contents:
+      - href: index.qmd
+        text: Home
+      - section: "Core Topics"
+        contents:
+          - text: "Fourier Series"
+            href: fourier.qmd
+          - text: "Continuity"
+            href: continuity.qmd
+      - section: "Extra"
+        contents:
+          - text: "Instructions"
+            href: instructions.qmd
+          - text: "Gaussian integral"
+            href: gaussian.qmd
 
 format:
   html:
     theme: default
     css: styles.css
     toc: true
-    toc-location: left
-    toc-title: "The Gaussian Integral"
+    toc-title: "On this page"
