@@ -3,22 +3,11 @@ project:
 
 website:
   title: "Gaussian integral"
-  navbar:
-    left:
-      - href: gaussian.qmd
-        text: "Gaussian integral"
-  sidebar:
-    style: "docked"
-    search: false
-    contents:
-      - section: "Topics"
-        contents:
-          - text: "Gaussian integral"
-            href: gaussian.qmd
 
 format:
   html:
     theme: default
     css: styles.css
     toc: true
+    toc-location: left
     toc-title: "Outline"

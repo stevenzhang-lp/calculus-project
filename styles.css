@@ -195,116 +195,38 @@ blockquote.pull cite {
 
 /* Quarto Layout Component Overrides */
 
-/* Header & Navbar - High-End Minimalist Redesign */
-#quarto-header .navbar {
-    background: rgba(250, 250, 250, 0.85) !important; /* Matches --bg-primary */
-    backdrop-filter: saturate(180%) blur(12px);
-    border-bottom: 1px solid var(--border) !important;
-    padding: 0.9rem 2rem !important;
-    transition: all 0.3s ease;
+/* Header & Navbar - Hidden */
+#quarto-header {
+    display: none !important;
 }
 
-#quarto-header .navbar-container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0;
-    display: flex;
-    align-items: center;
-}
-
-#quarto-header .navbar-brand {
-    font-family: "Playfair Display", Georgia, serif;
-    font-weight: 700;
-    font-size: 1.15rem;
-    letter-spacing: -0.010em;
-    color: var(--text-primary) !important;
-    margin-right: 2.5rem;
-    position: relative;
-}
-
-/* Elegant tiny dot under/after the brand */
-#quarto-header .navbar-brand::after {
-    content: ".";
-    display: inline-block;
-    color: var(--text-primary);
-    margin-left: 2px;
-}
-
-#quarto-header .nav-link {
-    font-family: "Inter", sans-serif;
-    font-weight: 500;
-    font-size: 0.85rem;
-    letter-spacing: 0.01em;
-    color: var(--text-secondary) !important;
-    padding: 0.35rem 0.85rem !important;
-    margin: 0 0.25rem;
-    border-radius: 6px;
-    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-#quarto-header .nav-link:hover {
-    color: var(--text-primary) !important;
-    background-color: var(--accent-subtle) !important;
-}
-
-#quarto-header .nav-link.active {
-    color: var(--text-primary) !important;
-    background-color: var(--accent-subtle) !important;
-    font-weight: 600;
-}
-
-/* Sidebar */
+/* Sidebar Container (which now holds the Left TOC) */
 #quarto-sidebar {
-    background-color: var(--bg-sidebar) !important;
+    background-color: var(--bg-primary) !important;
     border-right: 1px solid var(--border) !important;
-    padding-top: 1.5rem;
+    padding-top: 5rem;
 }
 
-#quarto-sidebar .sidebar-navigation {
-    font-family: "Inter", sans-serif;
-}
-
-#quarto-sidebar .sidebar-item-text, #quarto-sidebar .sidebar-item-toggle {
-    color: var(--text-secondary) !important;
-    font-size: 0.9rem;
-    font-weight: 500;
-}
-
-#quarto-sidebar a {
-    padding: 6px 12px !important;
-    border-radius: 6px;
-    transition: all 0.2s ease;
-}
-
-#quarto-sidebar a.active {
-    color: var(--accent) !important;
-    background-color: var(--accent-subtle) !important;
-    font-weight: 600 !important;
-}
-
-#quarto-sidebar a:hover:not(.active) {
-    background-color: var(--border-soft) !important;
-    color: var(--text-primary) !important;
-}
-
-/* TOC (Table of Contents) - High-End Minimalist Redesign */
+/* TOC (Table of Contents) - High-End Minimalist Left Sidebar Redesign */
 #TOC {
-    border-left: 1px solid var(--border-soft) !important;
-    padding-left: 1.25rem;
-    margin-top: 2rem;
+    border-left: none !important;
+    border-right: none !important;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+    margin-top: 0;
     position: sticky;
     top: 5rem;
 }
 
 #TOC .toc-title {
     font-family: "Inter", sans-serif;
-    font-size: 0.7rem;
+    font-size: 0.75rem;
     text-transform: uppercase;
     letter-spacing: 0.1em;
     font-weight: 600;
     color: var(--text-primary) !important;
-    margin-bottom: 1rem;
-    padding-bottom: 0.25rem;
+    margin-bottom: 1.25rem;
+    padding-bottom: 0.5rem;
     border-bottom: 1px solid var(--border-soft);
 }
 
@@ -320,11 +242,11 @@ blockquote.pull cite {
 
 #TOC a {
     font-family: "Inter", sans-serif;
-    font-size: 0.8rem;
-    line-height: 1.4;
+    font-size: 0.85rem;
+    line-height: 1.45;
     color: var(--text-muted) !important;
     transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-    padding: 2px 0;
+    padding: 4px 0;
     display: inline-block;
 }
 
@@ -336,14 +258,17 @@ blockquote.pull cite {
 #TOC .active {
     color: var(--text-primary) !important;
     font-weight: 600;
-    border-left: 2px solid var(--text-primary);
-    margin-left: -1.25rem;
-    padding-left: calc(1.25rem - 2px) !important;
+    border-left: 2px solid var(--text-primary) !important;
+    border-right: none !important;
+    margin-left: -1.5rem;
+    padding-left: calc(1.5rem - 2px) !important;
+    margin-right: 0;
+    padding-right: 0 !important;
 }
 
 /* Page container layout overrides */
 #quarto-document-content {
     max-width: 760px;
     margin: 0 auto;
-    padding-top: 2.5rem;
+    padding-top: 5rem;
 }
