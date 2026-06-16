@@ -28,7 +28,13 @@ document.addEventListener("DOMContentLoaded", function () {
                     if (target) {
                         e.preventDefault();
                         e.stopPropagation();
-                        target.scrollIntoView({ behavior: 'smooth' });
+                        // Scroll to upper-middle (25% from the top) instead of the very top
+                        const offset = window.innerHeight * 0.25;
+                        const targetPosition = target.getBoundingClientRect().top + window.scrollY;
+                        window.scrollTo({
+                            top: targetPosition - offset,
+                            behavior: 'smooth'
+                        });
                     }
                 } catch(e) {}
             }

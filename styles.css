@@ -38,6 +38,12 @@ body::before {
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
 }
 
+/* Prevent horizontal page sliding on mobile */
+html, body {
+    overflow-x: hidden !important;
+    width: 100%;
+}
+
 /* Links */
 a {
     color: var(--accent);
@@ -56,6 +62,7 @@ h1, h2, h3, h4, h5, h6, .navbar-brand {
 }
 
 h1.title {
+    display: block !important;
     font-size: clamp(32px, 4.5vw, 48px);
     font-weight: 700;
     letter-spacing: -0.02em;
@@ -85,9 +92,20 @@ h2 {
 }
 
 /* LaTeX / KaTeX block formulas styling */
-.katex-display {
-    padding: 1.5rem 0;
+p:has(.math.display), p:has(.katex-display) {
+    margin-top: 0.25rem !important;
+    margin-bottom: 0.25rem !important;
+}
+
+.katex-display, .math.display {
+    padding: 0 !important; 
+    margin: 0 !important;
     color: var(--text-primary);
+    overflow-x: auto !important;
+    overflow-y: hidden !important;
+    -webkit-overflow-scrolling: touch; /* 开启 iOS 平滑滚动 */
+    max-width: 100%;
+    display: block !important;
 }
 
 /* Custom Component Utilities */
@@ -112,6 +130,7 @@ h2 {
 }
 .callout.intro .body { 
     color: var(--text-secondary); 
+    min-width: 0; /* Allow flex child to shrink */
 }
 .callout.intro .body b { 
     color: var(--text-primary); 
@@ -196,13 +215,15 @@ blockquote.pull cite {
 
 /* Quarto Layout Component Overrides */
 
-/* Header & Navbar - Hidden */
-#quarto-header {
-    display: none !important;
+/* Header & Navbar - Hidden on desktop, visible on mobile for hamburger menu */
+@media (min-width: 992px) {
+    #quarto-header {
+        display: none !important;
+    }
 }
 
 /* Hide Quarto Footer */
-.nav-footer, #quarto-margin-sidebar, .quarto-margin-sidebar {
+footer, .nav-footer, #quarto-margin-sidebar, .quarto-margin-sidebar {
     display: none !important;
 }
 
@@ -230,7 +251,8 @@ blockquote.pull cite {
 
     /* Container: occupy full width and center the main content area */
     #quarto-content {
-        padding-left: 350px !important;  /* Space for left sidebar (widened to 350px) */
+        display: block !important; /* Disable Quarto's default CSS grid which causes double left margins */
+        padding-left: 350px !important;  /* Space for our fixed left sidebar */
         padding-right: 0 !important;     /* No right TOC space needed */
         width: 100% !important;
         max-width: 100% !important;
@@ -245,6 +267,155 @@ blockquote.pull cite {
         padding-top: 5rem !important;
         padding-left: 3rem !important;
         padding-right: 3rem !important;
+    }
+}
+
+/* Remove bottom border from title block to make it continuous with text */
+header.quarto-title-block, #title-block-header {
+    border-bottom: none !important;
+    padding-bottom: 0 !important;
+    margin-bottom: 1rem !important;
+}
+
+/* Mobile/Tablet Layout Enhancements (< 992px) */
+@media (max-width: 991.98px) {
+    /* Slightly reduce base font size for better reading on mobile */
+    body {
+        font-size: 15px !important;
+    }
+    
+    /* Set mobile sidebar background to dark */
+    #quarto-sidebar, .quarto-sidebar, .offcanvas, .offcanvas-body, .quarto-sidebar-header {
+        background-color: var(--bg-sidebar) !important;
+    }
+    
+    /* Ensure the close button is visible on dark background */
+    .btn-close {
+        filter: invert(1) grayscale(100%) brightness(200%) !important;
+    }
+
+    /* Prevent JS from changing padding on scroll, which causes jumping */
+    body, #quarto-content, .quarto-container {
+        padding-top: 0 !important;
+        margin-top: 0 !important;
+    }
+    
+    :root {
+        --quarto-header-height: 0px !important;
+    }
+
+    /* Make the mobile header completely transparent, floating on the right, and ALWAYS fixed (ignoring headroom sliding) */
+    #quarto-header, .headroom, .fixed-top {
+        background-color: transparent !important;
+        border-bottom: none !important;
+        position: fixed !important;
+        top: 1rem !important;
+        right: 1.5rem !important;
+        left: auto !important;
+        width: auto !important;
+        pointer-events: none; /* Allow clicks to pass through the invisible wrapper */
+        z-index: 9999 !important;
+        transform: none !important; /* Disable Quarto headroom scroll-hide behavior */
+        transition: none !important;
+        opacity: 1 !important;
+        visibility: visible !important;
+        display: block !important;
+    }
+    
+    /* Fix top gap when sidebar opens on mobile */
+    #quarto-sidebar, .quarto-sidebar, .quarto-sidebar-collapse-item, .offcanvas {
+        top: 0 !important;
+        margin-top: 0 !important;
+        padding-top: 1rem !important;
+        height: 100vh !important;
+        min-height: 100vh !important;
+    }
+    
+    /* Prevent text reflow during Quarto's width-based sidebar animation */
+    #quarto-sidebar > .sidebar-header,
+    #quarto-sidebar > .sidebar-menu-container {
+        width: 260px !important;
+        min-width: 260px !important;
+    }
+
+    nav.quarto-secondary-nav {
+        background-color: transparent !important;
+        border-bottom: none !important;
+        padding: 0 !important;
+        opacity: 1 !important;
+        visibility: visible !important;
+        display: block !important;
+    }
+    
+    .quarto-secondary-nav .container-fluid {
+        padding: 0 !important;
+        display: flex !important;
+        justify-content: flex-end !important;
+    }
+
+    /* Hide the mobile nav title so the main page title is the only title */
+    .quarto-secondary-nav-title, 
+    .quarto-secondary-nav .flex-grow-1 {
+        display: none !important;
+    }
+    
+    /* Hamburger button (.quarto-btn-toggle) as a dark floating circle */
+    .quarto-btn-toggle {
+        background-color: var(--bg-sidebar) !important;
+        border: none !important;
+        border-radius: 50% !important;
+        width: 48px !important;
+        height: 48px !important;
+        padding: 0 !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.15) !important;
+        margin: 0 !important;
+        pointer-events: auto; /* Ensure button remains clickable */
+        transition: transform 0.2s ease;
+    }
+
+    .quarto-btn-toggle:active {
+        transform: scale(0.95);
+    }
+    
+    /* Make the hamburger icon white */
+    .quarto-btn-toggle i {
+        color: #FFFFFF !important;
+        font-size: 1.5rem !important;
+        line-height: 1 !important;
+        margin: 0 !important;
+    }
+
+    /* Change hamburger to X when sidebar is open */
+    .quarto-btn-toggle[aria-expanded="true"] i {
+        display: none !important;
+    }
+    .quarto-btn-toggle[aria-expanded="true"]::after {
+        content: "✕" !important;
+        color: #FFFFFF !important;
+        font-size: 1.5rem !important;
+        font-weight: bold !important;
+        font-style: normal !important;
+        line-height: 1 !important;
+    }
+    
+    /* Ensure main content has nice padding on mobile */
+    main.content {
+        padding: 4rem 1.5rem 2rem 1.5rem !important; /* Top padding increased to avoid floating button overlap at top */
+    }
+    
+    /* Adjust callout for mobile */
+    .callout.intro {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+    
+    /* Adjust hero for mobile */
+    .home-hero {
+        padding: 2rem 0;
+        min-height: 30vh;
     }
 }
 
@@ -313,9 +484,10 @@ blockquote.pull cite {
     font-size: 0.82rem !important;
     padding: 4px 8px !important;
     color: #888A90 !important;
-    display: inline-block !important;
-    max-width: 180px !important; /* Reduced further to ensure strict wrapping */
-    white-space: normal !important;
+    display: block !important;
+    white-space: nowrap !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
     line-height: 1.4 !important;
 }
 
