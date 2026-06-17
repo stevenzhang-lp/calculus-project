@@ -72,16 +72,49 @@ $$I = \sqrt{\pi}$$
 
 ## 3. Generalization {#section-3}
 
-A common generalization of the Gaussian integral involves adding a positive scaling parameter $a > 0$ to the exponent:
+The standard Gaussian integral can be generalized in several stages to handle scaling, horizontal translation, and arbitrary quadratic exponents.
+
+### 3.1. Positive Scaling Parameter
+
+First, we introduce a positive scaling parameter $a > 0$ to the exponent:
 
 $$I(a) = \int_{-\infty}^{\infty} e^{-ax^2} dx$$
 
-We can evaluate this by performing a simple linear substitution. Let $u = \sqrt{a}x$, which means $du = \sqrt{a}dx$, or $dx = \frac{1}{\sqrt{a}}du$. Substituting these variables into the integral:
+We can evaluate this using a linear substitution. Let $u = \sqrt{a}x$, which gives $du = \sqrt{a}dx$, or $dx = \frac{1}{\sqrt{a}}du$. Substituting these variables into the integral:
 
-$$\int_{-\infty}^{\infty} e^{-ax^2} dx = \int_{-\infty}^{\infty} e^{-u^2} \frac{1}{\sqrt{a}} du = \frac{1}{\sqrt{a}} \int_{-\infty}^{\infty} e^{-u^2} du$$
-
-Since we know the value of the standard Gaussian integral is $\sqrt{\pi}$, this simplifies to:
-
-$$\int_{-\infty}^{\infty} e^{-ax^2} dx = \sqrt{\frac{\pi}{a}}$$
+$$\int_{-\infty}^{\infty} e^{-ax^2} dx = \int_{-\infty}^{\infty} e^{-u^2} \frac{1}{\sqrt{a}} du = \frac{1}{\sqrt{a}} \int_{-\infty}^{\infty} e^{-u^2} du = \sqrt{\frac{\pi}{a}}$$
 
 This generalized form is extensively used in Fourier analysis, the study of diffusion processes, and the normalization of probability density functions in statistics.
+
+### 3.2. Horizontal Translation
+
+Next, we introduce a horizontal translation $b \in \mathbb{R}$ alongside the scaling parameter $a > 0$:
+
+$$I(a, b) = \int_{-\infty}^{\infty} e^{-a(x+b)^2} dx$$
+
+Using the substitution $u = \sqrt{a}(x+b)$, we have $du = \sqrt{a}dx$, or $dx = \frac{1}{\sqrt{a}}du$. Substituting these variables into the integral:
+
+$$\int_{-\infty}^{\infty} e^{-a(x+b)^2} dx = \int_{-\infty}^{\infty} e^{-u^2} \frac{1}{\sqrt{a}} du = \frac{1}{\sqrt{a}} \int_{-\infty}^{\infty} e^{-u^2} du = \sqrt{\frac{\pi}{a}}$$
+
+This result shows that shifting the integrand horizontally does not change the total area under the curve, which is expected since it represents a simple horizontal translation.
+
+### 3.3. General Quadratic Exponent
+
+Finally, if the exponent is a general quadratic function $-(ax^2+bx+c)$ with $a > 0$, we can complete the square in the exponent:
+
+$$ax^2+bx+c = a\left(x+\frac{b}{2a}\right)^2 + \frac{4ac-b^2}{4a}$$
+
+Using this identity, the integral becomes:
+
+$$I(a, b, c) = \int_{-\infty}^{\infty} e^{-(ax^2+bx+c)} dx = \int_{-\infty}^{\infty} e^{-a\left(x+\frac{b}{2a}\right)^2 + \frac{b^2-4ac}{4a}} dx$$
+
+We can factor out the constant exponential term since it does not depend on the variable of integration $x$:
+
+$$I(a, b, c) = e^{\frac{b^2-4ac}{4a}} \int_{-\infty}^{\infty} e^{-a\left(x+\frac{b}{2a}\right)^2} dx$$
+
+Using our previous result for a shifted Gaussian integral (with translation parameter $b' = \frac{b}{2a}$), the remaining integral evaluates to $\sqrt{\frac{\pi}{a}}$, yielding the final generalized formula:
+
+$$I(a, b, c) = e^{\frac{b^2-4ac}{4a}} \sqrt{\frac{\pi}{a}}$$
+
+This general formula is particularly useful in probability theory when working with normal distributions that have non-zero means and arbitrary variances.
+
