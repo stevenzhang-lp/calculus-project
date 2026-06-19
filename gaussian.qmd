@@ -72,53 +72,78 @@ $$I = \sqrt{\pi}$$
 
 ## 3. Generalization {#section-3}
 
-The standard Gaussian integral can be generalized in several stages to handle scaling, horizontal translation, and arbitrary quadratic exponents.
+The standard Gaussian integral can be generalized to handle arbitrary quadratic exponents and complex parameters, which connects it to other fields such as probability theory and wave optics.
 
-### 3.1. Positive Scaling Parameter
+### 3.1. Quadratic Exponents (Scaling and Translation)
 
-First, we introduce a positive scaling parameter $a > 0$ to the exponent:
-
-$$I(a) = \int_{-\infty}^{\infty} e^{-ax^2} dx$$
-
-We can evaluate this using a linear substitution. Let $u = \sqrt{a}x$, which gives $du = \sqrt{a}dx$, or $dx = \frac{1}{\sqrt{a}}du$. Substituting these variables into the integral:
-
-$$\int_{-\infty}^{\infty} e^{-ax^2} dx = \int_{-\infty}^{\infty} e^{-u^2} \frac{1}{\sqrt{a}} du = \frac{1}{\sqrt{a}} \int_{-\infty}^{\infty} e^{-u^2} du = \sqrt{\frac{\pi}{a}}$$
-
-This generalized form is extensively used in Fourier analysis, the study of diffusion processes, and the normalization of probability density functions in statistics.
-
-### 3.2. Horizontal Translation
-
-Next, we introduce a horizontal translation $b \in \mathbb{R}$ alongside the scaling parameter $a > 0$:
-
-$$I(a, b) = \int_{-\infty}^{\infty} e^{-a(x+b)^2} dx$$
-
-Using the substitution $u = \sqrt{a}(x+b)$, we have $du = \sqrt{a}dx$, or $dx = \frac{1}{\sqrt{a}}du$. Substituting these variables into the integral:
-
-$$\int_{-\infty}^{\infty} e^{-a(x+b)^2} dx = \int_{-\infty}^{\infty} e^{-u^2} \frac{1}{\sqrt{a}} du = \frac{1}{\sqrt{a}} \int_{-\infty}^{\infty} e^{-u^2} du = \sqrt{\frac{\pi}{a}}$$
-
-This result shows that shifting the integrand horizontally does not change the total area under the curve, which is expected since it represents a simple horizontal translation.
-
-### 3.3. General Quadratic Exponent
-
-Finally, if the exponent is a general quadratic function $-(ax^2+bx+c)$ with $a > 0$, we can complete the square in the exponent:
+To evaluate a Gaussian integral with a general quadratic exponent $-(ax^2+bx+c)$ where $a > 0$, we complete the square in the exponent:
 
 $$ax^2+bx+c = a\left(x+\frac{b}{2a}\right)^2 + \frac{4ac-b^2}{4a}$$
 
-Using this identity, the integral becomes:
+This allows us to factor out the constant exponential term from the integral:
 
-$$I(a, b, c) = \int_{-\infty}^{\infty} e^{-(ax^2+bx+c)} dx = \int_{-\infty}^{\infty} e^{-a\left(x+\frac{b}{2a}\right)^2 + \frac{b^2-4ac}{4a}} dx$$
+$$\int_{-\infty}^{\infty} e^{-(ax^2+bx+c)} dx = e^{\frac{b^2-4ac}{4a}} \int_{-\infty}^{\infty} e^{-a\left(x+\frac{b}{2a}\right)^2} dx$$
 
-We can factor out the constant exponential term since it does not depend on the variable of integration $x$:
+We can evaluate the remaining integral using a single linear substitution that handles both scaling and translation. Let:
 
-$$I(a, b, c) = e^{\frac{b^2-4ac}{4a}} \int_{-\infty}^{\infty} e^{-a\left(x+\frac{b}{2a}\right)^2} dx$$
+$$u = \sqrt{a}\left(x + \frac{b}{2a}\right)$$
 
-Using our previous result for a shifted Gaussian integral (with translation parameter $b' = \frac{b}{2a}$), the remaining integral evaluates to $\sqrt{\frac{\pi}{a}}$, yielding the final generalized formula:
+This yields $du = \sqrt{a}dx$ (or $dx = \frac{1}{\sqrt{a}}du$). The limits of integration remain $(-\infty, \infty)$. Substituting these in, the integral simplifies to the standard Gaussian form:
 
-$$I(a, b, c) = e^{\frac{b^2-4ac}{4a}} \sqrt{\frac{\pi}{a}}$$
+$$\int_{-\infty}^{\infty} e^{-a\left(x+\frac{b}{2a}\right)^2} dx = \int_{-\infty}^{\infty} e^{-u^2} \frac{du}{\sqrt{a}} = \frac{1}{\sqrt{a}}\sqrt{\pi} = \sqrt{\frac{\pi}{a}}$$
 
-This general formula is particularly useful in probability theory when working with normal distributions that have non-zero means and arbitrary variances.
+Combining this with the factored-out constant, we obtain the general formula:
+
+$$\int_{-\infty}^{\infty} e^{-(ax^2+bx+c)} dx = \sqrt{\frac{\pi}{a}} e^{\frac{b^2-4ac}{4a}}$$
+
+This unified formula generalizes two fundamental operations:
+1. **Scaling ($a > 0$, with $b=c=0$)**: Yields $\int_{-\infty}^{\infty} e^{-ax^2} dx = \sqrt{\frac{\pi}{a}}$.
+2. **Translation ($b \neq 0$)**: Shifts the curve horizontally without changing the total area.
+
+In probability theory, this general form is used to normalize the normal distribution $\mathcal{N}(\mu, \sigma^2)$ by setting $a = \frac{1}{2\sigma^2}$, $b = -\frac{\mu}{\sigma^2}$, and $c = \frac{\mu^2}{2\sigma^2}$.
+
+### 3.2. Complex Rotation and the Fresnel Integrals
+
+A remarkable extension of the Gaussian integral arises when we allow the scaling parameter in the exponent to be complex or imaginary. Specifically, consider the **Fresnel integrals**, which arise in the study of wave optics and diffraction:
+
+$$S(x)=\int_0^x \sin(t^2) dt \quad \text{and} \quad C(x)=\int_0^x \cos(t^2) dt$$
+
+We hit a wall trying to evaluate these integrals using standard real-variable methods. However, we can elegantly bypass this by moving to the complex plane. By applying Euler's formula ($e^{it}=\cos t + i\sin t$), we transform these notoriously difficult integrals into a single, beautifully generalized complex Gaussian form:
+
+$$I(a)=\int_{-\infty}^{\infty} e^{-iax^2} dx$$
+
+(Here, we take the negative sign in the exponent for illustration).
+
+While the integral looks highly oscillatory (which seems impossible to integrate directly on the real line), we can evaluate it using a brilliant technique from complex analysis: **contour integration and complex rotation** (closely related to Wick rotation in physics).
+
+To do this, we treat the real axis as a path in the complex plane and rotate this path by **$45^\circ$ clockwise** (angle $-\pi/4$) into the complex domain. Let:
+
+$$x = u \cdot e^{-i\pi/4}$$
+
+where $u$ is a real variable. Substituting this into the integral, the differential $dx$ becomes $e^{-i\pi/4} du$, and the exponent transforms beautifully:
+
+$$-iax^2 = -ia \left(u \cdot e^{-i\pi/4}\right)^2 = -ia \cdot u^2 \cdot (-i) = -au^2$$
+
+Thanks to this rotation, the troublesome imaginary unit $i$ in the exponent has been completely eliminated. The complex integral collapses right back into our familiar, standard 1-D Gaussian integral:
+
+$$I(a) = e^{-i\pi/4} \int_{-\infty}^{\infty} e^{-au^2} du = e^{-i\pi/4} \cdot \sqrt{\frac{\pi}{a}} = \sqrt{\frac{\pi}{2a}} (1 - i)$$
+
+To extract the values of the individual Fresnel integrals, we expand the left-hand side of $I(a)$ using Euler's formula:
+
+$$I(a) = \int_{-\infty}^{\infty} e^{-iax^2} dx = \int_{-\infty}^{\infty} \cos(ax^2) dx - i\int_{-\infty}^{\infty} \sin(ax^2) dx$$
+
+Equating the real and imaginary parts from both sides of the equation, we instantly get:
+
+$$\int_{-\infty}^{\infty} \cos(ax^2) dx = \int_{-\infty}^{\infty} \sin(ax^2) dx = \sqrt{\frac{\pi}{2a}}$$
+
+Finally, by symmetry, the integrals over the half-line $[0, \infty)$ are exactly half of these values:
+
+$$\int_0^{\infty} \cos(ax^2) dx = \int_0^{\infty} \sin(ax^2) dx = \frac{1}{2}\sqrt{\frac{\pi}{2a}}$$
+
+This marks a beautiful triumph of extending the Gaussian integral—using a **2-D complex geometry** to solve an otherwise intractable 1-D problem.
 
 ## References {#references}
 
 - **Wikipedia Contributors**. "Gaussian integral." *Wikipedia, The Free Encyclopedia*. [https://en.wikipedia.org/wiki/Gaussian_integral](https://en.wikipedia.org/wiki/Gaussian_integral)
+- **Wikipedia Contributors**. "Fresnel integral." *Wikipedia, The Free Encyclopedia*. [https://en.wikipedia.org/wiki/Fresnel_integral](https://en.wikipedia.org/wiki/Fresnel_integral)
 
