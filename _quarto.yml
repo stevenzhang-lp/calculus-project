@@ -3,32 +3,24 @@ project:
 
 website:
   title: "Calculus Stories"
-  bread-crumbs: false
-  page-navigation: false
+
   sidebar:
     style: "docked"
-    search: false
+    search: true
     contents:
       - text: "Home"
         href: index.qmd
+
       - section: "Core Topics"
-        collapse: true
         contents:
-          - section: "Gaussian integral"
+          - text: "Gaussian Integral"
             href: gaussian.qmd
-            collapse: true
-            contents:
-              - text: "1. Introduction"
-                href: gaussian.qmd#section-1
-              - text: "2. The Polar Coordinates Derivation"
-                href: gaussian.qmd#section-2
-              - text: "3. Generalization"
-                href: gaussian.qmd#section-3
+
 
 format:
   html:
-    theme: default
-    css: styles.css
-    toc: false
-    include-in-header: header.html
-    include-after-body: footer.html
+    theme: darkly
+    toc: true
+    code-link: true
+
+jupyter: python3

@@ -1,8 +1,19 @@
 ---
-title: ""
+title: "MAT103 Calculus Stories"
 ---
 
-:::{.home-hero}
-# We are Algebraic. {.home-title}
+# Welcome
 
-:::
+This website is a collection of **calculus stories**.
+
+We explore how mathematical ideas evolved over time:
+- continuity
+- Fourier series
+- limits
+- infinitesimals
+
+## What this project is about
+
+Instead of only learning formulas, we explore the story of:
+
+> how calculus was *discovered*, *challenged*, and *rebuilt* over generations.
