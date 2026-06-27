@@ -23,4 +23,7 @@ format:
     toc: true
     code-link: true
 
+execute:
+  freeze: false
+
 jupyter: python3
