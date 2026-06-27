@@ -24,6 +24,6 @@ format:
     code-link: true
 
 execute:
-  freeze: false
+  freeze: auto
 
 jupyter: python3
