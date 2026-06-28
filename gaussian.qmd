@@ -230,7 +230,7 @@ Unlike the well-behaved, rapidly decaying bell curve of a Gaussian, these trigon
 >
 > While this heroic table perfectly matched experimental data (famously confirming the counter-intuitive "Poisson's Spot"), it faced a tragic mathematical dead-end: as $x \to \infty$, the series required infinitely many terms to compute. Fresnel could never find the exact, ultimate analytical values at infinity.
 >
-> ![Historical Fresnel integral table showing numerical calculations from the 1819 memoir](asset/2-TableII-1.png){width=80% fig-align="center"}
+> ![Tableau from Fresnel's 1819 memoir, showing his manual calculations of the integrals from $v=0.1$ to $v=5.5$.](asset/2-TableII-1.png){width=80% fig-align="center"}
 
 #### The 45-Degree Dimensional Leap
 The ultimate resolution of Fresnel's cliffhanger came from Augustin-Louis Cauchy, who bypassed the 1-D real-line roadblock by escaping into 2-D complex geometry. By invoking Euler's formula ($e^{it}=\cos t + i\sin t$), we can elegantly unify Fresnel's two fighting real waves into a single, complex generalized Gaussian form:
@@ -405,6 +405,7 @@ Feynman's unconventional toolbox didn't just solve a single integral on the blac
 
 
 - Feynman, R. P. (1985). *Surely you're joking, Mr. Feynman!: Adventures of a curious character*. W. W. Norton & Company.
+- Fresnel, A.-J. (1866). Mémoire sur la diffraction de la lumière. In H. de Sénarmont, É. Verdet, & L. Fresnel (Eds.), *Oeuvres complètes d'Augustin Fresnel* (Vol. 1, pp. 247-382). Imprimerie impériale. (Original work published 1819).
 - Nakib, M. (2018). *Gaussian integral and its applications*. Scribd.
 - Raviprakash, R. (2022). *Feynman's trick: Differentiation under the integral sign*. Medium.
 - Wikipedia contributors. (n.d.). *Gaussian integral*. Wikipedia, The Free Encyclopedia.
