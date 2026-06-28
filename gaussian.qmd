@@ -65,7 +65,7 @@ Today, this technique is widely celebrated as **Feynman's trick** (differentiati
 ##### A Teenager Who Taught Himself in the Back of the Classroom
 
 <div style="text-align: center; margin: 15px auto;">
-  <img src="asset/Richard_Feynman.jpg" style="width: 15%; display: block; margin: 0 auto;" />
+  <img src="asset/Richard_Feynman.jpg" style="width: 18%; display: block; margin: 0 auto;" />
   <span style="font-size: 0.8em; color: #888; display: block; margin-top: 5px; margin-bottom: 10px;">Richard P. Feynman (1918–1988)</span>
 </div>
 
