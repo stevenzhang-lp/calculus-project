@@ -284,6 +284,40 @@ In the geometric eyes of a mathematician, this first generalization on the 1-D r
 
 That was until physics struck back with a vengeance.
 
+```{python}
+#| label: fig-quadratic-exponents
+#| fig-cap: "The effect of parameters $a$ and $b$ on the Gaussian curve. Notice how $a$ controls the width (rubber band) and $b$ controls the horizontal shift (slider)."
+#| fig-align: center
+#| echo: false
+
+import numpy as np
+import plotly.graph_objects as go
+
+x = np.linspace(-5, 5, 500)
+
+fig = go.Figure()
+
+# Add multiple traces for different 'b' (translations)
+for b, color in zip([-2, 0, 2], ['#ff7f0e', '#1f77b4', '#2ca02c']):
+    y = np.exp(-(1.0 * x**2 + b * x + 0))
+    fig.add_trace(go.Scatter(x=x, y=y, mode='lines', name=f'a=1, b={b}', line=dict(color=color, width=3)))
+
+# Add trace for different 'a' (scaling)
+y_a = np.exp(-(2.5 * x**2 + 0 * x + 0))
+fig.add_trace(go.Scatter(x=x, y=y_a, mode='lines', name='a=2.5, b=0', line=dict(color='#d62728', width=3, dash='dash')))
+
+fig.update_layout(
+    xaxis_title='x',
+    yaxis_title='f(x)',
+    template='plotly_dark',
+    height=400,
+    margin=dict(l=40, r=40, t=40, b=40),
+    paper_bgcolor='rgba(0,0,0,0)',
+    plot_bgcolor='rgba(0,0,0,0)'
+)
+fig.show()
+```
+
 ### 4.2. Complex Rotation and the Fresnel Integrals
 
 A remarkable and far more dramatic extension arises when the scaling parameter in the exponent is forced into the complex domain. Consider the **Fresnel integrals**, which famously arose in 1818 when the young civil engineer Augustin-Jean Fresnel attempted to mathematically describe the diffraction of light waves:
@@ -419,6 +453,7 @@ The single-variable Gaussian integral can be generalized to higher dimensions. T
 > Enter a 24-year-old Carl Friedrich Gauss. While other astronomers struggled with the massive observational errors, Gauss approached the problem by accepting the errors as a natural, probabilistically distributed phenomenon. He assumed that the joint probability of $n$ independent astronomical observational errors occurring simultaneously would be the product of their individual 1-D probabilities. When you multiply $n$ Gaussian exponential distributions together, their exponents add up, transforming into a single exponential function whose exponent is a multidimensional quadratic form—leading directly to the multidimensional Gaussian integral. 
 >
 > By finding the orbital parameters that minimized this multidimensional exponent (a technique we now call the **Method of Least Squares**), Gauss successfully predicted the exact location where Ceres would be recovered later that year. This extraordinary achievement catapulted the young mathematician to international fame and permanently linked his name to the "bell curve."
+
 
 #### The Multivariate Generalization
 
