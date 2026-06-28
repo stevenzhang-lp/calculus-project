@@ -4,16 +4,12 @@ title: "MAT103 Calculus Stories"
 
 # Welcome
 
-This website is a collection of **calculus stories**.
+This website is a collection of **calculus stories**. Instead of only learning formulas, we explore the story of how calculus was discovered, challenged, and rebuilt over generations.
 
-We explore how mathematical ideas evolved over time:
-- continuity
-- Fourier series
-- limits
-- infinitesimals
+## Current Stories
 
-## What this project is about
+- **[The Gaussian Integral](gaussian.qmd)**: Three ways to evaluate the classical Euler–Poisson integral, tracing its history from Feynman's high school textbook to the lost planet Ceres, along with extensions to Fresnel integrals and multidimensional spaces.
 
-Instead of only learning formulas, we explore the story of:
+---
 
-> how calculus was *discovered*, *challenged*, and *rebuilt* over generations.
+> "Calculus is the mathematical language of change, but its own history is a story of continuous revolution."
