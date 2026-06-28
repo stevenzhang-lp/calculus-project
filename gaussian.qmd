@@ -12,7 +12,100 @@ $$\int_{-\infty}^{\infty} e^{-x^2} dx = \sqrt{\pi}$$
 
 ## 1. History of the Gaussian Integral {#history}
 
-[Placeholder: The history of the Gaussian integral will be added here.]
+### 1.1. Gauss and the Normal Distribution {#gauss-normal}
+
+When people first encounter the Gaussian integral,
+$$\int_{-\infty}^{\infty} e^{-x^2}\,dx,$$
+they are often surprised that such a simple-looking function has no elementary antiderivative. Even more surprising is that its exact value turns out to be $\sqrt{\pi}$, introducing the famous constant $\pi$ into a problem that seems to have nothing to do with circles.
+
+The story begins in the early 19th century with Carl Friedrich Gauss, one of the greatest mathematicians in history. At the time, astronomers were trying to determine the positions of planets and stars—most notably tracking the orbit of the newly discovered dwarf planet Ceres—but every observation contained small measurement errors. Different astronomers often recorded slightly different results, making it difficult to decide which value was the "true" one.
+
+<div style="text-align: center; margin: 15px auto;">
+  <img src="asset/Carl_Friedrich_Gauss.jpg" style="width: 18%; display: block; margin: 0 auto;" />
+  <span style="font-size: 0.8em; color: #888; display: block; margin-top: 5px; margin-bottom: 10px;">Carl Friedrich Gauss (1777–1855)</span>
+</div>
+
+Gauss proposed that these errors were not random chaos but instead followed a specific mathematical pattern: small errors occur much more frequently than large ones. This idea eventually became the normal (Gaussian) distribution, the familiar bell-shaped curve used throughout statistics today.
+
+However, there was one important problem. To make the curve represent a probability distribution, the total area under it had to equal 1. This required evaluating the integral
+$$\int_{-\infty}^{\infty} e^{-x^2}\,dx.$$
+Unfortunately, mathematicians soon discovered that no elementary function could describe its antiderivative. Rather than giving up, they approached the problem from an entirely different perspective. By squaring the integral, interpreting it as the area under a surface in two dimensions (as shown below), and converting Cartesian coordinates into polar coordinates, they obtained the elegant result
+$$\int_{-\infty}^{\infty} e^{-x^2}\,dx = \sqrt{\pi}.$$
+```{python}
+#| fig-cap: "The 3D Gaussian surface $z = e^{-(x^2+y^2)}$ exhibits perfect circular symmetry. The concentric circular contours projected on the $xy$-plane (at the bottom) visually demonstrate why polar coordinates are ideal for this evaluation. Try dragging the plot to rotate in 3D!"
+#| fig-align: center
+#| echo: false
+
+import numpy as np
+import plotly.graph_objects as go
+
+# Create coordinates
+x = np.linspace(-2.5, 2.5, 100)
+y = np.linspace(-2.5, 2.5, 100)
+X, Y = np.meshgrid(x, y)
+Z = np.exp(-(X**2 + Y**2))
+
+fig = go.Figure(data=[go.Surface(
+    z=Z, x=X, y=Y,
+    colorscale='Viridis',
+    contours=dict(
+        z=dict(
+            show=True,
+            usecolormap=True,
+            highlightcolor="limegreen",
+            project=dict(z=True)
+        )
+    )
+)])
+
+# Configure scene and layout
+fig.update_layout(
+    template='plotly_dark',
+    scene=dict(
+        xaxis_title='X',
+        yaxis_title='Y',
+        zaxis_title='Z',
+        zaxis=dict(range=[-0.2, 1.0]),
+        camera=dict(
+            eye=dict(x=1.5, y=1.5, z=1.0)
+        )
+    ),
+    autosize=True,
+    height=550,
+    margin=dict(l=40, r=40, t=40, b=40),
+    paper_bgcolor='rgba(0,0,0,0)',
+    plot_bgcolor='rgba(0,0,0,0)'
+)
+fig.show()
+```
+
+Today, this ingenious method is regarded as one of the most beautiful arguments in calculus. The Gaussian integral has become a cornerstone of probability theory, statistics, quantum mechanics, heat transfer, signal processing, and many other fields of mathematics and science.
+
+### 1.2. The Integral Named After Someone Who Didn't Discover It {#naming-history}
+
+Many mathematical discoveries are named after the people who first found them. Surprisingly, the Gaussian integral is not one of them.
+
+The function $e^{-x^2}$ first appeared in the early eighteenth century, long before Carl Friedrich Gauss became famous. In 1733, the English mathematician Abraham de Moivre was studying large binomial distributions. While searching for a simpler way to approximate complicated probability calculations, he discovered that the familiar binomial curve gradually approached a new continuous curve involving the expression $e^{-x^2}$. Although he did not study the integral itself, his work marked the first appearance of the Gaussian function in mathematics.
+
+Several decades later, the French mathematician Pierre-Simon Laplace expanded de Moivre's ideas. He realized that this mysterious exponential function appeared naturally whenever many small random effects were combined. His work eventually evolved into the Central Limit Theorem, one of the most fundamental results in probability theory. By this time, mathematicians had begun to recognize that the function $e^{-x^2}$ was far more important than anyone had imagined.
+
+<div style="display: flex; justify-content: center; gap: 20px; margin: 15px auto;">
+<div style="text-align: center; width: 18%;">
+<img src="asset/abraham_de_moivre.jpg" style="width: 100%; display: block; margin: 0 auto;" />
+<span style="font-size: 0.8em; color: #888; display: block; margin-top: 5px;">Abraham de Moivre (1667–1754)</span>
+</div>
+<div style="text-align: center; width: 18%;">
+<img src="asset/laplace.jpg" style="width: 100%; display: block; margin: 0 auto;" />
+<span style="font-size: 0.8em; color: #888; display: block; margin-top: 5px;">Pierre-Simon Laplace (1749–1827)</span>
+</div>
+</div>
+
+It was not until the early nineteenth century that Carl Friedrich Gauss gave the function its most influential interpretation. While studying astronomical observations, Gauss noticed that repeated measurements of the same object rarely produced identical results. Instead, small errors occurred frequently, while large errors were much less common. He proposed that these measurement errors followed the same bell-shaped curve that de Moivre and Laplace had encountered decades earlier.
+
+However, one crucial question remained. If this curve was to represent a probability distribution, the total area beneath it had to equal 1. To determine the correct scaling constant, mathematicians needed to evaluate the integral
+$$\int_{-\infty}^{\infty} e^{-x^2}\,dx.$$
+
+Ironically, although the integral now bears Gauss's name, he neither discovered the function nor was the first person to study it. Instead, his remarkable achievement was recognizing its profound connection to the real world. Through his work, the curve became the mathematical model for measurement errors and eventually the foundation of modern statistics. As a result, both the bell curve and the integral came to be known as Gaussian, honoring the mathematician who revealed their true significance rather than the one who first encountered them.
 
 ---
 
@@ -386,8 +479,6 @@ Feynman's unconventional toolbox didn't just solve a single integral on the blac
 
 ## 5. References {#references}
 
-
-
 - Feynman, R. P. (1985). *Surely you're joking, Mr. Feynman!: Adventures of a curious character*. W. W. Norton & Company.
 - Fresnel, A.-J. (1866). Mémoire sur la diffraction de la lumière. In H. de Sénarmont, É. Verdet, & L. Fresnel (Eds.), *Oeuvres complètes d'Augustin Fresnel* (Vol. 1, pp. 247-382). Imprimerie impériale. (Original work published 1819).
 - Nakib, M. (2018). *Gaussian integral and its applications*. Scribd.
@@ -396,3 +487,17 @@ Feynman's unconventional toolbox didn't just solve a single integral on the blac
 - Wikipedia contributors. (n.d.). *Leibniz integral rule*. Wikipedia, The Free Encyclopedia.
 - Wikipedia contributors. (n.d.). *Fresnel integral*. Wikipedia, The Free Encyclopedia.
 - Wikipedia contributors. (n.d.). *Multivariate normal distribution*. Wikipedia, The Free Encyclopedia.
+
+**Wikipedia Biographies of Mentioned Scientists:**
+
+- [Carl Friedrich Gauss](https://en.wikipedia.org/wiki/Carl_Friedrich_Gauss)
+- [Abraham de Moivre](https://en.wikipedia.org/wiki/Abraham_de_Moivre)
+- [Pierre-Simon Laplace](https://en.wikipedia.org/wiki/Pierre-Simon_Laplace)
+- [Joseph Liouville](https://en.wikipedia.org/wiki/Joseph_Liouville)
+- [Guido Fubini](https://en.wikipedia.org/wiki/Guido_Fubini)
+- [Richard Feynman](https://en.wikipedia.org/wiki/Richard_Feynman)
+- [Leonhard Euler](https://en.wikipedia.org/wiki/Leonhard_Euler)
+- [Marie Alfred Cornu](https://en.wikipedia.org/wiki/Marie_Alfred_Cornu)
+- [Augustin-Louis Cauchy](https://en.wikipedia.org/wiki/Augustin-Louis_Cauchy)
+- [Augustin-Jean Fresnel](https://en.wikipedia.org/wiki/Augustin-Jean_Fresnel)
+- [Gottfried Wilhelm Leibniz](https://en.wikipedia.org/wiki/Gottfried_Wilhelm_Leibniz)
