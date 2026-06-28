@@ -217,6 +217,11 @@ Unlike the well-behaved, rapidly decaying bell curve of a Gaussian, these trigon
 
 > **Historical Highlight: Fresnel's Brute Force**
 >
+> <div style="text-align: center; margin: 15px auto;">
+>   <img src="asset/Augustin_Fresnel.jpg" style="width: 20%; display: block; margin: 0 auto;" />
+>   <span style="font-size: 0.8em; color: #888; display: block; margin-top: 5px; margin-bottom: 10px;">Augustin-Jean Fresnel (1788–1827)</span>
+> </div>
+>
 > Without the comfort of modern computers or complex analysis, Fresnel had to fight these integrals with "brute force." In his legendary 1819 memoir *Mémoire sur la diffraction de la lumière*, he utilized a tool central to Calculus II—**term-by-term integration of Maclaurin series**:
 >
 > $$\cos(t^2) = 1 - \frac{t^4}{2!} + \frac{t^8}{4!} - \frac{t^{12}}{6!} + \dots \implies C(x) = x - \frac{x^5}{5 \cdot 2!} + \frac{x^9}{9 \cdot 4!} - \dots$$
@@ -327,6 +332,11 @@ The single-variable Gaussian integral can be generalized to higher dimensions. T
 
 > **Historical Highlight: The Lost Planet and the Method of Least Squares**
 >
+> <div style="text-align: center; margin: 15px auto;">
+>   <img src="asset/Carl_Friedrich_Gauss.jpg" style="width: 20%; display: block; margin: 0 auto;" />
+>   <span style="font-size: 0.8em; color: #888; display: block; margin-top: 5px; margin-bottom: 10px;">Carl Friedrich Gauss (1777–1855)</span>
+> </div>
+>
 > The transition from a single variable to multiple dimensions has roots in one of the most famous astronomical triumphs of the 19th century. On January 1, 1801, Italian astronomer Giuseppe Piazzi discovered Ceres, the first known asteroid (now classified as a dwarf planet). However, after observing it for only 41 days, Ceres disappeared behind the glare of the Sun. With less than 1% of its orbit recorded, astronomers were clueless about where it would reappear in the vast night sky.
 >
 > Enter a 24-year-old Carl Friedrich Gauss. While other astronomers struggled with the massive observational errors, Gauss approached the problem by accepting the errors as a natural, probabilistically distributed phenomenon. He assumed that the joint probability of $n$ independent astronomical observational errors occurring simultaneously would be the product of their individual 1-D probabilities. When you multiply $n$ Gaussian exponential distributions together, their exponents add up, transforming into a single exponential function whose exponent is a multidimensional quadratic form—leading directly to the multidimensional Gaussian integral. 
@@ -363,14 +373,41 @@ In probability theory, this result directly gives rise to the normalization cons
 
 ---
 
-## 5. References {#references}
+## 5. Applications: Why the Gaussian Integral Rules the Universe {#applications}
+
+While the pure mathematical evaluation of the Gaussian integral is fascinating, its true power lies in its unparalleled ability to bridge microscopic randomness with macroscopic determinism. The Gaussian integral is arguably the single most important definite integral in all of applied mathematics and theoretical physics.
+
+### 5.1. Statistics: The Normal Distribution
+In probability theory, the central limit theorem dictates that the sum of many independent random variables tends toward a normal (Gaussian) distribution, regardless of their underlying distributions. The probability density function of a standard normal distribution is given by $f(x) \propto e^{-x^2/2}$.
+
+For $f(x)$ to be a valid probability density function, the total probability over all possible outcomes must equal $1$. This requires finding a normalization constant $Z$ such that:
+$$ \int_{-\infty}^{\infty} \frac{1}{Z} e^{-x^2/2} dx = 1 $$
+
+Using the scaling generalization of the Gaussian integral (letting $a = 1/2$), we evaluate the integral:
+$$ \int_{-\infty}^{\infty} e^{-x^2/2} dx = \sqrt{\frac{\pi}{1/2}} = \sqrt{2\pi} $$
+
+Thus, the normalization constant must be $Z = \sqrt{2\pi}$, which is why the ubiquitous factor of $\sqrt{2\pi}$ appears in the standard normal distribution formula:
+$$ f(x) = \frac{1}{\sqrt{2\pi}} e^{-x^2/2} $$
+
+### 5.2. Physics: Partition Functions and Path Integrals
+In statistical mechanics, the macroscopic properties of a system in thermal equilibrium are derived from its **partition function** ($Z$), which sums the probabilities of all possible microscopic states. For a classical ideal gas, the kinetic energy of a particle is $E = \frac{p^2}{2m}$ (where $p$ is momentum and $m$ is mass). The probability of a particle having momentum $p$ is proportional to the Boltzmann factor $e^{-E/kT}$. Summing these probabilities over all possible momenta requires evaluating a Gaussian integral over momentum space:
+$$ Z \propto \int_{-\infty}^{\infty} e^{-\frac{p^2}{2mkT}} dp = \sqrt{2\pi mkT} $$
+This single integral is the foundation for deriving the ideal gas law and the macroscopic thermodynamic properties of our universe.
+
+Furthermore, in quantum mechanics, we encounter the **path integral formulation**—developed by none other than Richard Feynman. To calculate the probability amplitude for a particle to travel from point A to point B, Feynman proposed integrating over *all possible paths* the particle could take. For a free particle, the "weight" of each path involves an exponent of the form $e^{i S / \hbar}$, where the action $S$ is quadratic in velocity. The infinite-dimensional path integral ultimately boils down to a product of infinitely many complex Gaussian integrals, perfectly echoing the multidimensional and complex extensions we explored earlier. 
+
+Feynman's unconventional toolbox didn't just solve a single integral on the blackboard; it provided the mathematical language for modern quantum field theory.
+
+---
+
+## 6. References {#references}
 
 
 
-- **Richard P. Feynman**. *Surely You're Joking, Mr. Feynman!: Adventures of a Curious Character*. W. W. Norton & Company, 1985. Chapter: "A Different Box of Tools".
-- **Mohtasim Nakib**. "Gaussian Integral and Its Applications." *Scribd*. [https://www.scribd.com/document/370642632/Gaussian-Integral](https://www.scribd.com/document/370642632/Gaussian-Integral)
-- **Rthvik Raviprakash**. "Feynman’s Trick: Differentiation Under the Integral Sign." *Medium*, 2022.
-- **Wikipedia Contributors**. "Gaussian integral." *Wikipedia, The Free Encyclopedia*. [https://en.wikipedia.org/wiki/Gaussian_integral](https://en.wikipedia.org/wiki/Gaussian_integral)
-- **Wikipedia Contributors**. "Leibniz integral rule." *Wikipedia, The Free Encyclopedia*. [https://en.wikipedia.org/wiki/Leibniz_integral_rule](https://en.wikipedia.org/wiki/Leibniz_integral_rule)
-- **Wikipedia Contributors**. "Fresnel integral." *Wikipedia, The Free Encyclopedia*. [https://en.wikipedia.org/wiki/Fresnel_integral](https://en.wikipedia.org/wiki/Fresnel_integral)
-- **Wikipedia Contributors**. "Multivariate normal distribution." *Wikipedia, The Free Encyclopedia*. [https://en.wikipedia.org/wiki/Multivariate_normal_distribution](https://en.wikipedia.org/wiki/Multivariate_normal_distribution)
+- Feynman, R. P. (1985). *Surely you're joking, Mr. Feynman!: Adventures of a curious character*. W. W. Norton & Company.
+- Nakib, M. (2018). *Gaussian integral and its applications*. Scribd.
+- Raviprakash, R. (2022). *Feynman's trick: Differentiation under the integral sign*. Medium.
+- Wikipedia contributors. (n.d.). *Gaussian integral*. Wikipedia, The Free Encyclopedia.
+- Wikipedia contributors. (n.d.). *Leibniz integral rule*. Wikipedia, The Free Encyclopedia.
+- Wikipedia contributors. (n.d.). *Fresnel integral*. Wikipedia, The Free Encyclopedia.
+- Wikipedia contributors. (n.d.). *Multivariate normal distribution*. Wikipedia, The Free Encyclopedia.
