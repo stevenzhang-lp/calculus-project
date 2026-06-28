@@ -10,7 +10,13 @@ The Gaussian integral, also known as the Euler–Poisson integral, is the integr
 $$\int_{-\infty}^{\infty} e^{-x^2} dx = \sqrt{\pi}$$
 :::
 
-## 1. Overview {#overview}
+## 1. History of the Gaussian Integral {#history}
+
+[Placeholder: The history of the Gaussian integral will be added here.]
+
+---
+
+## 2. Three Ways to $\sqrt{\pi}$ {#three-ways}
 
 This guide explores the evaluation of the classical Gaussian integral. We cover three distinct proof paths, illustrating the concept of "the same result, different approaches."
 
@@ -20,73 +26,25 @@ This guide explores the evaluation of the classical Gaussian integral. We cover 
 > 
 > $$\int_{0}^{\infty} e^{-x^2} \, dx = \frac{\sqrt{\pi}}{2}$$
 
----
-
-## 2. History: One Integral, Many Names {#history}
-
-The Gaussian integral is also referred to as the **Euler–Poisson integral**. Leonhard Euler encountered it in 1729 while studying the Gamma function, and Siméon Denis Poisson made extensive use of it in probability theory. However, the rigorous proof in polar coordinates was ultimately provided by Pierre-Simon Laplace in 1812.
-
-Today, the standard Wikipedia entry for the Gaussian integral lists four standard proofs: polar coordinate transformation, the Cartesian coordinate method, Laplace’s method, and the method of complex integration. Notably, **Feynman’s trick is not among them**. This is not an omission; rather, Feynman’s method was never the “standard answer” found in textbooks. It was an unconventional tool “picked up on the sly” by a high school student sitting in the back of the classroom, which was later used to reopen a door that had already been shut.
-
-### A Teenager Who Taught Himself in the Back of the Classroom
-Richard P. Feynman (1918–1988) was a headache for his teachers while attending Far Rockaway High School in New York—not because he was slow, but precisely because he was too quick. One day after school, his physics teacher, Mr. Bader, kept him behind. Feynman thought he was in for another scolding, but Bader said something that would change his life:
-
-> “Feynman, you talk too much and are too noisy. I know why—you’re bored. I’ll give you a book. Go sit in that corner over there and read it. Once you understand everything in it, you can start talking again.”
-
-The book was *Advanced Calculus* by Frederick S. Woods (first edition, 1926)—a hardcore textbook written for junior and senior students at MIT. At the time, Feynman was still wearing his high school uniform and had only taught himself the bare basics of calculus from an introductory booklet called *Calculus for the Practical Man*. But Bader could tell: what this kid needed was a real challenge, not a classroom recitation of Pascal’s law.
-
-So for the rest of the semester, a peculiar scene unfolded in physics class: the professor lectured on hydrostatics up front, while Feynman sat in the back corner, clutching a college textbook thicker than his head, plowing through it page by page. Differentiation under the integral sign was a neglected technique in university mathematics education at the time. However, Feynman honed this technique into muscle memory, using it over and over again.
-
-### "Just Because My Toolbox Is Different"
-A few years later, Feynman entered Princeton University as a graduate student. Students in the physics and mathematics departments soon noticed a strange phenomenon: this young man from MIT didn’t know how to perform contour integration—which was the standard "heavy artillery" for solving definite integrals at the time. But he had a peculiar alternative approach—no matter what the integral was, he would first try to differentiate under the integral sign.
-
-> “I never learned contour integration. The reason my classmates at MIT or Princeton couldn’t solve certain integrals was that they couldn’t solve them using the standard methods taught at school. If it involved contour integration, they would have found a solution long ago; if it was a simple series expansion, they would have found that too. Then I’d come along, try taking the derivative under the integral sign, and often succeed. That’s why I earned the reputation of being an ‘integral whiz’—simply because my toolbox was different from everyone else’s. They’d tried every tool they had before passing the problem on to me.”
-
-Feynman wasn’t smarter than those classmates—they knew more standard methods than he did. He simply **had a tool that none of them possessed**. Moreover, he taught himself this tool from an old book published in 1926; it wasn’t part of any university curriculum. This epitomizes his entire scientific career: don’t compete with others using the same set of weapons; go find your own.
-
-Today, this technique is widely celebrated as **Feynman's trick** (differentiation under the integral sign), and it has been used to re-prove the Gaussian integral.
-
----
-
-## 3. Three Ways to $\sqrt{\pi}$ {#three-ways}
-
-Below, we detail three methods for evaluating the Gaussian integral.
-
-### 3.1. The Polar Coordinate Proof {#polar-proof}
+### 2.1. The Polar Coordinate Proof {#polar-proof}
 *The classic proof. The one Laplace used in 1812. The one every calculus textbook leads with—and for good reason: once you see it, you never forget it.*
 
-#### The Problem with $e^{-x^2}$
-We seek to evaluate:
-$$I = \int_{-\infty}^{\infty} e^{-x^2}\,dx$$
-Standard real-variable methods like simple substitution ($u = x^2$ leaving a stray $x$) or integration by parts fail to yield progress. The function $e^{-x^2}$ has no elementary antiderivative, a fact proved rigorously by Joseph Liouville in 1835. Direct antidifferentiation is off the table.
+1. **Identify the antiderivative roadblock:**
+   We seek to evaluate $I = \int_{-\infty}^{\infty} e^{-x^2}\,dx$. Standard real-variable methods like simple substitution or integration by parts fail to yield progress because $e^{-x^2}$ has no elementary antiderivative (a fact proved by Joseph Liouville in 1835). To bypass this roadblock, we use a clever spatial trick: **square the integral**.
 
-We need a different idea: **square the integral**.
+2. **Square the integral and switch to polar coordinates:**
+   Since $I$ is a convergent real number, we can multiply it by itself using a different dummy variable $y$, and combine them into a double integral over the entire $xy$-plane $\mathbb{R}^2$:
+   $$I^2 = \left(\int_{-\infty}^{\infty} e^{-x^2}\,dx\right) \cdot \left(\int_{-\infty}^{\infty} e^{-y^2}\,dy\right) = \iint_{\mathbb{R}^2} e^{-(x^2 + y^2)}\,dx\,dy$$
+   Using polar coordinates ($x = r\cos\theta$, $y = r\sin\theta$, and $dx\,dy = r\,dr\,d\theta$) over the domain $r \in [0, \infty)$ and $\theta \in [0, 2\pi]$, the double integral transforms to:
+   $$I^2 = \int_{0}^{2\pi} \int_{0}^{\infty} e^{-r^2} \cdot r\,dr\,d\theta$$
 
-#### Squaring the Integral
-Since $I$ is a convergent real number, we can write:
-$$I^2 = \left(\int_{-\infty}^{\infty} e^{-x^2}\,dx\right) \cdot \left(\int_{-\infty}^{\infty} e^{-y^2}\,dy\right)$$
-Here, we use a different dummy variable $y$ in the second copy. This lets us combine them into a **double integral** over the entire $xy$-plane:
-$$I^2 = \int_{-\infty}^{\infty}\int_{-\infty}^{\infty} e^{-x^2} \cdot e^{-y^2}\,dx\,dy = \iint_{\mathbb{R}^2} e^{-(x^2 + y^2)}\,dx\,dy$$
-The term $x^2 + y^2$ represents the squared distance from the origin. The integrand is **radially symmetric**, which suggests switching coordinate systems.
-
-#### Switching to Polar Coordinates
-In polar coordinates, $x = r\cos\theta$, $y = r\sin\theta$, and the area element transforms as $dx\,dy = r\,dr\,d\theta$ (where the extra factor $r$ is the Jacobian scaling factor). The exponent simplifies to:
-$$x^2 + y^2 = r^2(\cos^2\theta + \sin^2\theta) = r^2$$
-The integration domain $\mathbb{R}^2$ translates to $r \in [0, \infty)$ and $\theta \in [0, 2\pi]$. The double integral becomes:
-$$I^2 = \int_{0}^{2\pi} \int_{0}^{\infty} e^{-r^2} \cdot r\,dr\,d\theta$$
-The inner integral is now solvable.
-
-#### Evaluating the Integrals
-For the inner integral:
-$$\int_{0}^{\infty} e^{-r^2} r\,dr$$
-Let $u = r^2$, so $du = 2r\,dr or r\,dr = \frac{1}{2}du$:
-$$\int_{0}^{\infty} e^{-r^2} r\,dr = \frac{1}{2}\int_{0}^{\infty} e^{-u}\,du = \frac{1}{2}\left[-e^{-u}\right]_{0}^{\infty} = \frac{1}{2}(0 - (-1)) = \frac{1}{2}$$
-The extra $r$ from the Jacobian makes the substitution work perfectly.
-
-Now, evaluating the outer integral:
-$$I^2 = \int_{0}^{2\pi} \frac{1}{2}\,d\theta = \frac{1}{2} \cdot 2\pi = \pi$$
-Taking the positive square root (since $e^{-x^2} > 0$), we obtain:
-$$\int_{-\infty}^{\infty} e^{-x^2}\,dx = \sqrt{\pi}$$
+3. **Evaluate the decoupled integrals:**
+   The extra factor $r$ from the Jacobian makes the inner integral easily solvable via substitution ($u = r^2$, $du = 2r\,dr$):
+   $$\int_{0}^{\infty} e^{-r^2} r\,dr = \frac{1}{2}\int_{0}^{\infty} e^{-u}\,du = \frac{1}{2}$$
+   Integrating over the angle $\theta$:
+   $$I^2 = \int_{0}^{2\pi} \frac{1}{2}\,d\theta = \pi$$
+   Taking the positive square root (since $e^{-x^2} > 0$), we obtain:
+   $$\int_{-\infty}^{\infty} e^{-x^2}\,dx = \sqrt{\pi}$$
 
 <blockquote class="pull">
 <p>“A mathematician is one to whom that is as obvious as that twice two makes four is to you. Liouville was a mathematician.”</p>
@@ -98,8 +56,33 @@ $$\int_{-\infty}^{\infty} e^{-x^2}\,dx = \sqrt{\pi}$$
 
 ---
 
-### 3.2. The Feynman-Inspired Proof {#feynman-proof}
+### 2.2. The Feynman-Inspired Proof {#feynman-proof}
 This section demonstrates how to evaluate the Gaussian integral using the technique of differentiation under the integral sign.
+
+#### History and Background
+Today, this technique is widely celebrated as **Feynman's trick** (differentiation under the integral sign). However, it is not listed among standard textbook proofs. Rather, Feynman's method was an unconventional tool "picked up on the sly" by a high school student sitting in the back of the classroom.
+
+##### A Teenager Who Taught Himself in the Back of the Classroom
+
+<div style="text-align: center; margin: 15px auto;">
+  <img src="asset/Richard_Feynman.jpg" style="width: 15%; display: block; margin: 0 auto;" />
+  <span style="font-size: 0.8em; color: #888; display: block; margin-top: 5px; margin-bottom: 10px;">Richard P. Feynman (1918–1988)</span>
+</div>
+
+Richard P. Feynman (1918–1988) was a headache for his teachers while attending Far Rockaway High School in New York—not because he was slow, but precisely because he was too quick. One day after school, his physics teacher, Mr. Bader, kept him behind. Feynman thought he was in for another scolding, but Bader said something that would change his life:
+
+> “Feynman, you talk too much and are too noisy. I know why—you’re bored. I’ll give you a book. Go sit in that corner over there and read it. Once you understand everything in it, you can start talking again.”
+
+The book was *Advanced Calculus* by Frederick S. Woods (first edition, 1926)—a hardcore textbook written for junior and senior students at MIT. At the time, Feynman was still wearing his high school uniform and had only taught himself the bare basics of calculus from an introductory booklet called *Calculus for the Practical Man*. But Bader could tell: what this kid needed was a real challenge, not a classroom recitation of Pascal’s law.
+
+So for the rest of the semester, a peculiar scene unfolded in physics class: the professor lectured on hydrostatics up front, while Feynman sat in the back corner, clutching a college textbook thicker than his head, plowing through it page by page. Differentiation under the integral sign was a neglected technique in university mathematics education at the time. However, Feynman honed this technique into muscle memory, using it over and over again.
+
+##### "Just Because My Toolbox Is Different"
+A few years later, Feynman entered Princeton University as a graduate student. Students in the physics and mathematics departments soon noticed a strange phenomenon: this young man from MIT didn’t know how to perform contour integration—which was the standard "heavy artillery" for solving definite integrals at the time. But he had a peculiar alternative approach—no matter what the integral was, he would first try to differentiate under the integral sign.
+
+> “I never learned contour integration. The reason my classmates at MIT or Princeton couldn’t solve certain integrals was that they couldn’t solve them using the standard methods taught at school. If it involved contour integration, they would have found a solution long ago; if it was a simple series expansion, they would have found that too. Then I’d come along, try taking the derivative under the integral sign, and often succeed. That’s why I earned the reputation of being an ‘integral whiz’—simply because my toolbox was different from everyone else’s. They’d tried every tool they had before passing the problem on to me.”
+
+Feynman wasn’t smarter than those classmates—they knew more standard methods than he did. He simply **had a tool that none of them possessed**. Moreover, he taught himself this tool from an old book published in 1926; it wasn’t part of any university curriculum. This epitomizes his entire scientific career: don’t compete with others using the same set of weapons; go find your own.
 
 #### Step-by-Step Derivation
 We define the target half-integral:
@@ -137,46 +120,47 @@ $$\int_{-\infty}^{\infty} e^{-x^2}\,dx = 2I = \sqrt{\pi}$$
 
 ---
 
-### 3.3. The Gamma Function Approach {#gamma-proof}
+### 2.3. The Gamma Function Approach {#gamma-proof}
 *This method connects the Gaussian integral to the Gamma function and, through Euler's reflection formula, to $\pi$.*
 
-#### Change of Variables
-We start with the half-integral:
-$$I = \int_{0}^{\infty} e^{-x^2}\,dx$$
-Let $t = x^2$. Then $x = \sqrt{t} = t^{1/2}$, and the differential is $dx = \frac{1}{2}t^{-1/2}\,dt$. Substituting these into the integral yields:
-$$I = \int_{0}^{\infty} e^{-t} \cdot \frac{1}{2}t^{-1/2}\,dt = \frac{1}{2}\int_{0}^{\infty} t^{-1/2}\,e^{-t}\,dt$$
+1. **Change of variables:**
+   We start with the half-integral:
+   $$I = \int_{0}^{\infty} e^{-x^2}\,dx$$
+   Let $t = x^2$. Then $x = \sqrt{t} = t^{1/2}$, and the differential is $dx = \frac{1}{2}t^{-1/2}\,dt$. Substituting these into the integral yields:
+   $$I = \int_{0}^{\infty} e^{-t} \cdot \frac{1}{2}t^{-1/2}\,dt = \frac{1}{2}\int_{0}^{\infty} t^{-1/2}\,e^{-t}\,dt$$
 
-#### Recognizing the Gamma Function
-Recall the definition of the Gamma function for $\operatorname{Re}(z) > 0$:
-$$\Gamma(z) = \int_{0}^{\infty} t^{z-1}\,e^{-t}\,dt$$
-Comparing this with our integral, we identify $z - 1 = -1/2$, which implies $z = 1/2$. Thus:
-$$I = \frac{1}{2}\,\Gamma\left(\frac{1}{2}\right)$$
-Evaluating the Gaussian integral simplifies to evaluating $\Gamma(1/2)$.
+2. **Recognize the Gamma function:**
+   Recall the definition of the Gamma function for $\operatorname{Re}(z) > 0$:
+   $$\Gamma(z) = \int_{0}^{\infty} t^{z-1}\,e^{-t}\,dt$$
+   Comparing this with our integral, we identify $z - 1 = -1/2$, which implies $z = 1/2$. Thus:
+   $$I = \frac{1}{2}\,\Gamma\left(\frac{1}{2}\right)$$
+   Evaluating the Gaussian integral simplifies to evaluating $\Gamma(1/2)$.
 
-#### Evaluating $\Gamma(1/2)$
-We can evaluate this using **Euler's reflection formula**:
-$$\Gamma(z)\,\Gamma(1-z) = \frac{\pi}{\sin(\pi z)}$$
-Setting $z = 1/2$:
-$$\Gamma\left(\frac{1}{2}\right)\,\Gamma\left(\frac{1}{2}\right) = \frac{\pi}{\sin(\pi/2)} = \pi \implies \left[\Gamma\left(\frac{1}{2}\right)\right]^2 = \pi$$
-Since the Gamma function is strictly positive for positive real arguments:
-$$\Gamma\left(\frac{1}{2}\right) = \sqrt{\pi}$$
+3. **Evaluate $\Gamma(1/2)$ via Euler's reflection formula:**
+   We can evaluate this using **Euler's reflection formula**:
+   $$\Gamma(z)\,\Gamma(1-z) = \frac{\pi}{\sin(\pi z)}$$
+   Setting $z = 1/2$:
+   $$\Gamma\left(\frac{1}{2}\right)\,\Gamma\left(\frac{1}{2}\right) = \frac{\pi}{\sin(\pi/2)} = \pi \implies \left[\Gamma\left(\frac{1}{2}\right)\right]^2 = \pi$$
+   Since the Gamma function is strictly positive for positive real arguments:
+   $$\Gamma\left(\frac{1}{2}\right) = \sqrt{\pi}$$
 
-Alternatively, we can use the **Beta function**:
-$$\mathrm{B}(p,q) = \frac{\Gamma(p)\,\Gamma(q)}{\Gamma(p+q)}$$
-Using $p = q = 1/2$ and the trigonometric form of the Beta function, we find $\mathrm{B}(1/2, 1/2) = \pi$, which similarly yields $\Gamma(1/2) = \sqrt{\pi}$.
+4. **Alternative evaluation via the Beta function:**
+   Alternatively, we can use the **Beta function**:
+   $$\mathrm{B}(p,q) = \frac{\Gamma(p)\,\Gamma(q)}{\Gamma(p+q)}$$
+   Using $p = q = 1/2$ and the trigonometric form of the Beta function, we find $\mathrm{B}(1/2, 1/2) = \pi$, which similarly yields $\Gamma(1/2) = \sqrt{\pi}$.
 
-#### Completing the Proof
-Combining the steps:
-$$I = \frac{1}{2}\,\Gamma\left(\frac{1}{2}\right) = \frac{\sqrt{\pi}}{2}$$
-The full integral is:
-$$\int_{-\infty}^{\infty} e^{-x^2}\,dx = 2I = \sqrt{\pi}$$
+5. **Complete the proof:**
+   Combining the steps:
+   $$I = \frac{1}{2}\,\Gamma\left(\frac{1}{2}\right) = \frac{\sqrt{\pi}}{2}$$
+   The full integral is:
+   $$\int_{-\infty}^{\infty} e^{-x^2}\,dx = 2I = \sqrt{\pi}$$
 
 > [!NOTE]
 > To avoid circular reasoning, it is worth noting that standard proofs of Euler's reflection formula often utilize the Gaussian integral. This shows that the reflection formula and the Gaussian integral are logically equivalent.
 
 ---
 
-## 4. Generalization {#section-3}
+## 3. Generalization {#generalization}
 
 The standard Gaussian integral can be generalized to handle arbitrary quadratic exponents, complex parameters, and multidimensional spaces.
 
@@ -373,7 +357,7 @@ In probability theory, this result directly gives rise to the normalization cons
 
 ---
 
-## 5. Applications: Why the Gaussian Integral Rules the Universe {#applications}
+## 4. Applications: Why the Gaussian Integral Rules the Universe {#applications}
 
 While the pure mathematical evaluation of the Gaussian integral is fascinating, its true power lies in its unparalleled ability to bridge microscopic randomness with macroscopic determinism. The Gaussian integral is arguably the single most important definite integral in all of applied mathematics and theoretical physics.
 
@@ -400,7 +384,7 @@ Feynman's unconventional toolbox didn't just solve a single integral on the blac
 
 ---
 
-## 6. References {#references}
+## 5. References {#references}
 
 
 
