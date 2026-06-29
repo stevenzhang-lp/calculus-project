@@ -32,6 +32,7 @@ $$\int_{-\infty}^{\infty} e^{-x^2}\,dx.$$
 Unfortunately, mathematicians soon discovered that no elementary function could describe its antiderivative. Rather than giving up, they approached the problem from an entirely different perspective. By squaring the integral, interpreting it as the area under a surface in two dimensions (as shown below), and converting Cartesian coordinates into polar coordinates, they obtained the elegant result
 $$\int_{-\infty}^{\infty} e^{-x^2}\,dx = \sqrt{\pi}.$$
 ```{python}
+#| label: fig-gaussian-3d
 #| fig-cap: "The 3D Gaussian surface $z = e^{-(x^2+y^2)}$ exhibits perfect circular symmetry. The concentric circular contours projected on the $xy$-plane (at the bottom) visually demonstrate why polar coordinates are ideal for this evaluation. Try dragging the plot to rotate in 3D!"
 #| fig-align: center
 #| echo: false
